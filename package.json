@@ -1,0 +1,34 @@
+{
+  "name": "truth-table-generator",
+  "version": "0.0.1",
+  "description": "Truth table generator",
+  "repository": "https://github.com/ouuan/truth-table-generator",
+  "author": "Yufan You <ouuansteve@gmail.com> (https://github.com/ouuan)",
+  "license": "Apache-2.0",
+  "private": true,
+  "scripts": {
+    "lint": "yarn lint:nofix --fix",
+    "lint:nofix": "eslint . --ignore-path .gitignore --ext .ts,.vue,.js",
+    "lint:types": "vue-tsc --noEmit",
+    "dev": "vite",
+    "build": "yarn lint && yarn lint:types && vite build"
+  },
+  "dependencies": {
+    "naive-ui": "^2.19.1",
+    "ts-exhaustive-check": "^1.0.0",
+    "vue": "^3.2.16"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.31.2",
+    "@typescript-eslint/parser": "^4.31.2",
+    "@vitejs/plugin-vue": "^1.9.1",
+    "@vue/eslint-config-typescript": "^7.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-vue": "^7.18.0",
+    "typescript": "^4.4.3",
+    "vite": "^2.5.10",
+    "vue-tsc": "^0.3.0"
+  }
+}
