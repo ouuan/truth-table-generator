@@ -5,7 +5,7 @@ abstract class AstNode {
 
   protected truth = false;
 
-  private needUpdate = false;
+  private needUpdate = true;
 
   protected children: AstNode[] = [];
 
