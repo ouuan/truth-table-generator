@@ -26,6 +26,7 @@
         :data="data"
         :columns="columns"
         :single-line="false"
+        :single-column="true"
         :pagination="{ pageSize: 20 }"
       />
     </n-card>
