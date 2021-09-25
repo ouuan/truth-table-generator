@@ -115,7 +115,7 @@ export default function buildAst(expression: string): {
           while (current().length > 1) {
             const operator = current()[current().length - 2];
             if (typeof operator !== 'string' || operator === '!') throw Error('Invalid stack');
-            if (precedence[operator] <= precedence[c]) reduce();
+            if (precedence[operator] < precedence[c] || (operator === c && c !== '>')) reduce();
             else break;
           }
           push(c);
