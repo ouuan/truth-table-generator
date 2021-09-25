@@ -38,7 +38,11 @@ module.exports = {
 
     '@typescript-eslint/no-explicit-any': 0,
 
+    '@typescript-eslint/type-annotation-spacing': ['error', { before: false, after: true }],
+
     'no-inner-declarations': 0,
+
+    'max-statements-per-line': ['error', { max: 1 }],
 
     // for generic type parameters
     'no-spaced-func': 0,

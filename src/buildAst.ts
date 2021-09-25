@@ -28,7 +28,9 @@ export default function buildAst(expression: string): {
 
     const stacks: (AstNode | '&' | '|' | '>' | '=' | '!')[][] = [[]];
 
-    function current() { return stacks[stacks.length - 1]; }
+    function current() {
+      return stacks[stacks.length - 1];
+    }
 
     function isBinaryOperator(x: unknown): x is '&' | '|' | '>' | '=' {
       return typeof x === 'string' && /^[&|>=]$/.test(x);

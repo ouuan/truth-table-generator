@@ -5,7 +5,7 @@ export default class extends AstNode {
 
   operator = '';
 
-  constructor(public str : string) {
+  constructor(public str: string) {
     super();
   }
 

@@ -19,7 +19,7 @@ abstract class AstNode {
     return this.str;
   }
 
-  parent? : AstNode;
+  parent?: AstNode;
 
   getTruth() {
     return this.truth;
