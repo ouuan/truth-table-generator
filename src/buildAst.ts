@@ -10,11 +10,11 @@ import {
   EqNode,
 } from './AstNode';
 
-const priority = {
-  '=': 1,
-  '>': 2,
+const precedence = {
+  '=': 5,
+  '>': 4,
   '|': 3,
-  '&': 4,
+  '&': 2,
 } as const;
 
 export default function buildAst(expression: string): {
@@ -115,7 +115,7 @@ export default function buildAst(expression: string): {
           while (current().length > 1) {
             const operator = current()[current().length - 2];
             if (typeof operator !== 'string' || operator === '!') throw Error('Invalid stack');
-            if (priority[operator] >= priority[c]) reduce();
+            if (precedence[operator] <= precedence[c]) reduce();
             else break;
           }
           push(c);
