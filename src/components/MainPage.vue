@@ -13,7 +13,16 @@
     <n-card>
       <n-p>
         <n-ul>
-          <n-li>可以用 ! & | > =，也可以用 ¬ ∧ ∨ → ⟷；这也是优先级顺序；“→” 是右结合的</n-li>
+          <n-li>
+            运算符的种类，表示方法，以及优先级顺序：
+            <n-ol>
+              <n-li>¬，!，~</n-li>
+              <n-li>∧，&</n-li>
+              <n-li>∨，|，v</n-li>
+              <n-li>→，>；它是右结合的</n-li>
+              <n-li>⟷，=</n-li>
+            </n-ol>
+          </n-li>
           <n-li>T/F 表示 true/false</n-li>
           <n-li>命题变项用除了 T/F 的单个大写字母表示</n-li>
           <n-li>可以点击表头中的按钮来进行推理演算；如果没有发现你想要的规则，很可能是要多用几次交换律</n-li>
@@ -70,6 +79,7 @@ import {
   NFormItem,
   NInput,
   NLi,
+  NOl,
   NP,
   NPageHeader,
   NSpace,
