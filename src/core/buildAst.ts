@@ -24,11 +24,11 @@ export default function buildAst(expression: string): {
 } | null {
   try {
     const exp = expression.replace(/\s/g, '')
-      .replaceAll('∧', '&')
-      .replaceAll('∨', '|')
-      .replaceAll('⟷', '=')
-      .replaceAll('→', '>')
-      .replaceAll('¬', '!');
+      .replace(/∧/g, '&')
+      .replace(/∨/g, '|')
+      .replace(/⟷/g, '=')
+      .replace(/→/g, '>')
+      .replace(/¬/g, '!');
 
     if (/[^A-Z()!&|>=]/.test(exp)) return null;
 

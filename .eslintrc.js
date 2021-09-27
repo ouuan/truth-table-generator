@@ -3,7 +3,7 @@ module.exports = {
   env: {
     node: true,
     browser: true,
-    es2021: true,
+    es2015: true,
   },
   extends: [
     '@vue/typescript/recommended',
