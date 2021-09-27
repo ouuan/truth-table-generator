@@ -7,7 +7,7 @@ export default class extends AstNode {
 
   constructor() {
     super();
-    this.str = '0';
+    this.str = 'F';
   }
 
   calc() {

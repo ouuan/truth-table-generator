@@ -12,7 +12,7 @@
     </n-a>
     <n-card>
       <n-form-item
-        label="输入逻辑表达式（& | ! > = 表示 ∧ ∨ ¬ → ⟷；1/0 表示 true/false；命题变项用单个大写字母表示）"
+        label="输入逻辑表达式（& | ! > = 表示 ∧ ∨ ¬ → ⟷；T/F 表示 true/false；命题变项用除了 T/F 的单个大写字母表示）"
         :validation-status="validationStatus"
         :feedback="feedback"
       >

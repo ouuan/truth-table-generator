@@ -30,7 +30,7 @@ export default function buildAst(expression: string): {
       .replaceAll('→', '>')
       .replaceAll('¬', '!');
 
-    if (/[^01A-Z()!&|>=]/.test(exp)) return null;
+    if (/[^A-Z()!&|>=]/.test(exp)) return null;
 
     const stacks: (AstNode | '&' | '|' | '>' | '=' | '!')[][] = [[]];
 
@@ -130,10 +130,10 @@ export default function buildAst(expression: string): {
         case '!':
           push('!');
           break;
-        case '1':
+        case 'T':
           push(new TrueNode());
           break;
-        case '0':
+        case 'F':
           push(new FalseNode());
           break;
         default: {
