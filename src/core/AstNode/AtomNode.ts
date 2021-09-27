@@ -5,12 +5,9 @@ export default class extends AstNode {
 
   operator = '';
 
-  constructor(public str: string) {
+  constructor(name: string) {
     super();
-  }
-
-  setTruth(truth: boolean) {
-    this.truth = truth;
+    this.str = name;
   }
 
   // actually unused

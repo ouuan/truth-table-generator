@@ -2,12 +2,13 @@ import { exhaustiveCheck } from 'ts-exhaustive-check';
 import {
   AstNode,
   AtomNode,
-  BracketNode,
   NotNode,
   AndNode,
   OrNode,
   ImplyNode,
   EqNode,
+  TrueNode,
+  FalseNode,
 } from './AstNode';
 
 const precedence = {
@@ -22,9 +23,14 @@ export default function buildAst(expression: string): {
   atomNodes: Map<string, AtomNode[]>
 } | null {
   try {
-    const exp = expression.replace(/\s/g, '');
+    const exp = expression.replace(/\s/g, '')
+      .replaceAll('∧', '&')
+      .replaceAll('∨', '|')
+      .replaceAll('⟷', '=')
+      .replaceAll('→', '>')
+      .replaceAll('¬', '!');
 
-    if (/[^A-Z()!&|>=]/.test(exp)) return null;
+    if (/[^01A-Z()!&|>=]/.test(exp)) return null;
 
     const stacks: (AstNode | '&' | '|' | '>' | '=' | '!')[][] = [[]];
 
@@ -104,7 +110,7 @@ export default function buildAst(expression: string): {
           const res = current()[0];
           if (typeof res !== 'object') throw Error('End bracket error');
           stacks.pop();
-          push(new BracketNode(res));
+          push(res);
           break;
         }
         case '&':
@@ -123,6 +129,12 @@ export default function buildAst(expression: string): {
         }
         case '!':
           push('!');
+          break;
+        case '1':
+          push(new TrueNode());
+          break;
+        case '0':
+          push(new FalseNode());
           break;
         default: {
           const node = new AtomNode(c);
@@ -144,6 +156,8 @@ export default function buildAst(expression: string): {
 
     const root = current()[0];
     if (typeof root === 'string') throw Error('Invalid root');
+
+    root.updateStr();
 
     return {
       root,

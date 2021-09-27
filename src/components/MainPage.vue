@@ -12,17 +12,32 @@
     </n-a>
     <n-card>
       <n-form-item
-        label="输入逻辑表达式（逻辑符号：& | ! > = 表示 ∧ ∨ ¬ → ⟷；命题变项用单个大写字母表示）"
+        label="输入逻辑表达式（& | ! > = 表示 ∧ ∨ ¬ → ⟷；1/0 表示 true/false；命题变项用单个大写字母表示）"
         :validation-status="validationStatus"
         :feedback="feedback"
       >
         <n-input
-          v-model:value="expression"
+          v-model:value="input"
           :maxlength="100"
           placeholder="!(P & Q) = !P | !Q"
         />
       </n-form-item>
+      <n-space
+        v-if="steps.length > 1"
+        justify="space-between"
+      >
+        <simplification-steps :steps="steps" />
+        <n-button
+          type="warning"
+          @click="popStep"
+        >
+          撤销
+        </n-button>
+      </n-space>
+    </n-card>
+    <n-card>
       <n-data-table
+        :key="renderCnt"
         :data="data"
         :columns="columns"
         :single-line="false"
@@ -41,6 +56,7 @@ import {
 
 import {
   NA,
+  NButton,
   NCard,
   NDataTable,
   NFormItem,
@@ -49,16 +65,36 @@ import {
   NSpace,
 } from 'naive-ui';
 
-import buildAst from '~/buildAst';
-import getTable, { Column } from '~/getTable';
+import buildAst from '~/core/buildAst';
+import { getTable, Column } from '~/core/getTable';
 
-const expression = ref('');
+import Step from '~/types/step';
+
+import SimplificationSteps from '~/components/SimplificationSteps.vue';
+
+const input = ref('');
+const steps = ref<Step[]>([]);
 const feedback = ref('');
 const validationStatus = ref<'success' | 'error' | 'warning' | undefined>(undefined);
 const columns = ref<Column[]>([]);
 const data = ref<any[]>([]);
+const renderCnt = ref(0);
 
-watch(expression, (exp) => {
+function addStep(step: Step) {
+  steps.value.push(step);
+}
+
+function popStep() {
+  steps.value.pop();
+}
+
+watch(input, (exp) => {
+  steps.value = [{ exp, rule: '' }];
+});
+
+watch([steps, () => steps.value.length], ([s, len]) => {
+  const { exp } = s[len - 1];
+
   columns.value = [];
   data.value = [];
 
@@ -78,6 +114,8 @@ watch(expression, (exp) => {
 
   const { root, atomNodes } = result;
 
+  if (len === 1) steps.value[0].exp = root.toString();
+
   if (atomNodes.size > 12) {
     feedback.value = '命题变项太多了 😫';
     validationStatus.value = 'error';
@@ -91,9 +129,11 @@ watch(expression, (exp) => {
     validationStatus.value = 'success';
   }
 
-  const table = getTable(root, atomNodes);
+  const table = getTable(root, atomNodes, addStep);
   columns.value = table.columns;
   data.value = table.data;
+
+  renderCnt.value += 1;
 });
 </script>
 
@@ -103,3 +143,13 @@ watch(expression, (exp) => {
   margin: auto;
 }
 </style>
+
+#main {
+  max-width: 80%;
+  margin: auto;
+}
+
+#main {
+  max-width: 80%;
+  margin: auto;
+}

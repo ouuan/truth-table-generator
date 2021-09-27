@@ -1,7 +1,9 @@
 <template>
   <n-config-provider :theme="theme">
     <n-global-style />
-    <main-page />
+    <n-dialog-provider>
+      <main-page />
+    </n-dialog-provider>
   </n-config-provider>
 </template>
 
@@ -10,12 +12,13 @@ import { computed } from 'vue';
 
 import {
   NConfigProvider,
+  NDialogProvider,
   NGlobalStyle,
   useOsTheme,
   darkTheme,
 } from 'naive-ui';
 
-import MainPage from '~/MainPage.vue';
+import MainPage from '~/components/MainPage.vue';
 
 const theme = computed(() => (useOsTheme().value === 'dark' ? darkTheme : null));
 </script>

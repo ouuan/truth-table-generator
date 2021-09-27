@@ -34,6 +34,9 @@ module.exports = {
       },
     ],
 
+    semi: 0,
+    '@typescript-eslint/semi': 2,
+
     '@typescript-eslint/explicit-module-boundary-types': 0,
 
     '@typescript-eslint/no-explicit-any': 0,
