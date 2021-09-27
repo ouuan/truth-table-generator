@@ -11,8 +11,16 @@
       Source Code @ GitHub
     </n-a>
     <n-card>
+      <n-p>
+        <n-ul>
+          <n-li>可以用 ! & | > =，也可以用 ¬ ∧ ∨ → ⟷；这也是优先级顺序；“→” 是右结合的</n-li>
+          <n-li>T/F 表示 true/false</n-li>
+          <n-li>命题变项用除了 T/F 的单个大写字母表示</n-li>
+          <n-li>可以点击表头中的按钮来进行推理演算；如果没有发现你想要的规则，很可能是要多用几次交换律</n-li>
+        </n-ul>
+      </n-p>
       <n-form-item
-        label="输入逻辑表达式（& | ! > = 表示 ∧ ∨ ¬ → ⟷；T/F 表示 true/false；命题变项用除了 T/F 的单个大写字母表示）"
+        label="输入逻辑表达式"
         :validation-status="validationStatus"
         :feedback="feedback"
       >
@@ -61,8 +69,11 @@ import {
   NDataTable,
   NFormItem,
   NInput,
+  NLi,
+  NP,
   NPageHeader,
   NSpace,
+  NUl,
 } from 'naive-ui';
 
 import buildAst from '~/core/buildAst';
