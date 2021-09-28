@@ -315,6 +315,18 @@ export function equivalents(node: AstNode): Equivalent[] {
           ),
         });
       }
+      if (node.ch(0).type === 'true') {
+        result.push({
+          name: '¬T = F',
+          result: new FalseNode(),
+        });
+      }
+      if (node.ch(0).type === 'false') {
+        result.push({
+          name: '¬F = T',
+          result: new TrueNode(),
+        });
+      }
       break;
     case 'or':
       if (node.ch(0).type === node.type) {
