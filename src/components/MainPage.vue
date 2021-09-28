@@ -69,6 +69,7 @@
 import {
   ref,
   watch,
+  toRef,
 } from 'vue';
 
 import {
@@ -84,6 +85,7 @@ import {
   NPageHeader,
   NSpace,
   NUl,
+  useThemeVars,
 } from 'naive-ui';
 
 import buildAst from '~/core/buildAst';
@@ -156,6 +158,8 @@ watch([steps, () => steps.value.length], ([s, len]) => {
 
   renderCnt.value += 1;
 });
+
+const successColor = toRef(useThemeVars().value, 'successColor');
 </script>
 
 <style scoped>
@@ -165,12 +169,8 @@ watch([steps, () => steps.value.length], ([s, len]) => {
 }
 </style>
 
-#main {
-  max-width: 80%;
-  margin: auto;
+<style>
+.n-data-table .truth-table-result {
+  color: v-bind(successColor);
 }
-
-#main {
-  max-width: 80%;
-  margin: auto;
-}
+</style>

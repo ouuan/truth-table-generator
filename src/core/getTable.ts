@@ -10,6 +10,7 @@ interface Column {
   key: string;
   align: 'center';
   children?: Column[];
+  className?: string;
 }
 
 export type { Column };
@@ -27,18 +28,26 @@ function getColumn(u: AstNode, root: AstNode, addStep: (step: Step)=> void): Col
     align: 'center',
   };
 
+  const main = {
+    title: u.operator,
+    key: u.toString(),
+    align: 'center',
+    ...(u === root ? {
+      className: 'truth-table-result',
+    } : {}),
+  } as const;
+
   if (children.length === 1) {
-    result.children = [{
-      title: u.operator,
-      key: u.toString(),
-      align: 'center',
-    }, getColumn(children[0], root, addStep)];
+    result.children = [
+      main,
+      getColumn(children[0], root, addStep),
+    ];
   } else if (children.length === 2) {
-    result.children = [getColumn(children[0], root, addStep), {
-      title: u.operator,
-      key: u.toString(),
-      align: 'center',
-    }, getColumn(children[1], root, addStep)];
+    result.children = [
+      getColumn(children[0], root, addStep),
+      main,
+      getColumn(children[1], root, addStep),
+    ];
   }
 
   return result;
