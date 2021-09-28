@@ -15,7 +15,7 @@ interface Column {
 
 export type { Column };
 
-function getColumn(u: AstNode, root: AstNode, addStep: (step: Step)=> void): Column {
+function getColumn(u: AstNode, root: AstNode, addStep: (step: Step) => void): Column {
   const { children } = u;
 
   const result: Column = {
@@ -56,7 +56,7 @@ function getColumn(u: AstNode, root: AstNode, addStep: (step: Step)=> void): Col
 export function getTable(
   root: AstNode,
   atomNodes: Map<string, AtomNode[]>,
-  addStep: (step: Step)=> void,
+  addStep: (step: Step) => void,
 ) {
   const columns: Column[] = [];
 
