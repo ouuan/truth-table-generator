@@ -14,8 +14,6 @@
     "build": "yarn lint && yarn lint:types && vite build"
   },
   "dependencies": {
-    "@types/lodash-es": "^4.17.5",
-    "lodash-es": "^4.17.21",
     "naive-ui": "^2.19.2",
     "ts-exhaustive-check": "^1.0.0",
     "vue": "^3.2.19"

@@ -1,5 +1,4 @@
 import { exhaustiveCheck } from 'ts-exhaustive-check';
-import { cloneDeep } from 'lodash-es'; // there shouldn't be two occurrences of the same node object in the result
 import AstNode from './base';
 import AtomNode from './AtomNode';
 import NotNode from './NotNode';
@@ -57,7 +56,7 @@ export function equivalents(node: AstNode): Equivalent[] {
           name: '分配律',
           result: new OrNode(
             new AndNode(node.ch(0), node.ch(1).ch(0)),
-            new AndNode(cloneDeep(node.ch(0)), node.ch(1).ch(1)),
+            new AndNode(node.ch(0), node.ch(1).ch(1)),
           ),
         });
       }
@@ -174,19 +173,19 @@ export function equivalents(node: AstNode): Equivalent[] {
         name: '从取真来描述双条件',
         result: new OrNode(
           new AndNode(node.ch(0), node.ch(1)),
-          new AndNode(new NotNode(cloneDeep(node.ch(0))), new NotNode(cloneDeep(node.ch(1)))),
+          new AndNode(new NotNode(node.ch(0)), new NotNode(node.ch(1))),
         ),
       }, {
         name: '从取假来描述双条件',
         result: new AndNode(
           new OrNode(node.ch(0), new NotNode(node.ch(1))),
-          new OrNode(new NotNode(cloneDeep(node.ch(0))), cloneDeep(node.ch(1))),
+          new OrNode(new NotNode(node.ch(0)), node.ch(1)),
         ),
       }, {
         name: '等价等值式',
         result: new AndNode(
           new ImplyNode(node.ch(0), node.ch(1)),
-          new ImplyNode(cloneDeep(node.ch(1)), cloneDeep(node.ch(0))),
+          new ImplyNode(node.ch(1), node.ch(0)),
         ),
       });
       break;
@@ -198,7 +197,7 @@ export function equivalents(node: AstNode): Equivalent[] {
           name: '分配律',
           result: new ImplyNode(
             new ImplyNode(node.ch(0), node.ch(1).ch(0)),
-            new ImplyNode(cloneDeep(node.ch(0)), node.ch(1).ch(1)),
+            new ImplyNode(node.ch(0), node.ch(1).ch(1)),
           ),
         });
       }
@@ -277,7 +276,7 @@ export function equivalents(node: AstNode): Equivalent[] {
           name: '前提析取合并',
           result: new AndNode(
             new ImplyNode(node.ch(0).ch(0), node.ch(1)),
-            new ImplyNode(node.ch(0).ch(1), cloneDeep(node.ch(1))),
+            new ImplyNode(node.ch(0).ch(1), node.ch(1)),
           ),
         });
       }
@@ -312,7 +311,7 @@ export function equivalents(node: AstNode): Equivalent[] {
           name: '摩根律',
           result: new OrNode(
             new AndNode(new NotNode(node.ch(0).ch(0)), node.ch(0).ch(1)),
-            new AndNode(cloneDeep(node.ch(0).ch(0)), new NotNode(cloneDeep(node.ch(0).ch(1)))),
+            new AndNode(node.ch(0).ch(0), new NotNode(node.ch(0).ch(1))),
           ),
         });
       }
@@ -339,7 +338,7 @@ export function equivalents(node: AstNode): Equivalent[] {
           name: '分配律',
           result: new AndNode(
             new OrNode(node.ch(0), node.ch(1).ch(0)),
-            new OrNode(cloneDeep(node.ch(0)), node.ch(1).ch(1)),
+            new OrNode(node.ch(0), node.ch(1).ch(1)),
           ),
         });
       }
