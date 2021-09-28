@@ -5,7 +5,9 @@
   <n-modal
     v-model:show="showModal"
     preset="dialog"
+    title="置换"
   >
+    <n-p>你要将 {{ node }} 替换成？</n-p>
     <n-button
       v-for="(option, index) of options"
       :key="index"
@@ -20,6 +22,7 @@
 import {
   NButton,
   NModal,
+  NP,
   useDialog,
 } from 'naive-ui';
 
