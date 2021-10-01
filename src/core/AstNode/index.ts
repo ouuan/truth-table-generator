@@ -3,7 +3,10 @@ import AstNode from './base';
 import AtomNode from './AtomNode';
 import NotNode from './NotNode';
 import AndNode from './AndNode';
+import NandNode from './NandNode';
+import XorNode from './XorNode';
 import OrNode from './OrNode';
+import NorNode from './NorNode';
 import ImplyNode from './ImplyNode';
 import EqNode from './EqNode';
 import TrueNode from './TrueNode';
@@ -15,7 +18,10 @@ export {
   AtomNode,
   NotNode,
   AndNode,
+  NandNode,
+  XorNode,
   OrNode,
+  NorNode,
   ImplyNode,
   EqNode,
   TrueNode,
@@ -281,6 +287,18 @@ export function equivalents(node: AstNode): Equivalent[] {
         });
       }
       break;
+    case 'nand':
+      result.push({
+        name: '与非的定义',
+        result: new NotNode(new AndNode(node.ch(0), node.ch(1))),
+      });
+      break;
+    case 'nor':
+      result.push({
+        name: '与或的定义',
+        result: new NotNode(new OrNode(node.ch(0), node.ch(1))),
+      });
+      break;
     case 'not':
       if (node.ch(0).type === 'not') {
         result.push({
@@ -420,6 +438,12 @@ export function equivalents(node: AstNode): Equivalent[] {
           result: new EqNode(node.ch(0).ch(0), node.ch(0).ch(1)),
         });
       }
+      break;
+    case 'xor':
+      result.push({
+        name: '异或的定义',
+        result: new NotNode(new EqNode(node.ch(0), node.ch(1))),
+      });
       break;
     case 'true':
       break;

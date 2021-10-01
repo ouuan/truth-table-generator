@@ -18,9 +18,12 @@
             <n-ol>
               <n-li>¬，!，~</n-li>
               <n-li>∧，&</n-li>
+              <n-li>↑ （与非）</n-li>
+              <n-li>⊕，^，⊻ （异或）</n-li>
               <n-li>∨，|，v</n-li>
+              <n-li>↓ （或非）</n-li>
               <n-li>→，>；它是右结合的</n-li>
-              <n-li>⟷，=</n-li>
+              <n-li>↔，⟷，=</n-li>
             </n-ol>
           </n-li>
           <n-li>T/F 表示 true/false</n-li>

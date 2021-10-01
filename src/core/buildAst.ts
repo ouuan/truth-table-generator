@@ -4,7 +4,10 @@ import {
   AtomNode,
   NotNode,
   AndNode,
+  NandNode,
+  XorNode,
   OrNode,
+  NorNode,
   ImplyNode,
   EqNode,
   TrueNode,
@@ -14,7 +17,10 @@ import {
 const precedence = {
   '=': 5,
   '>': 4,
+  '↓': 3.1,
   '|': 3,
+  '^': 2.5,
+  '↑': 2.1,
   '&': 2,
 } as const;
 
@@ -25,21 +31,22 @@ export default function buildAst(expression: string): {
   try {
     const exp = expression.replace(/\s/g, '')
       .replace(/∧/g, '&')
+      .replace(/⊻|⊕/g, '^')
       .replace(/∨|v/g, '|')
-      .replace(/⟷/g, '=')
+      .replace(/⟷|↔/g, '=')
       .replace(/→/g, '>')
       .replace(/¬|~/g, '!');
 
-    if (/[^A-Z()!&|>=]/.test(exp)) return null;
+    if (/[^A-Z()!&|>=↑^↓]/.test(exp)) return null;
 
-    const stacks: (AstNode | '&' | '|' | '>' | '=' | '!')[][] = [[]];
+    const stacks: (AstNode | '&' | '↑' | '^' | '↓' | '|' | '>' | '=' | '!')[][] = [[]];
 
     function current() {
       return stacks[stacks.length - 1];
     }
 
-    function isBinaryOperator(x: unknown): x is '&' | '|' | '>' | '=' {
-      return typeof x === 'string' && /^[&|>=]$/.test(x);
+    function isBinaryOperator(x: unknown): x is '&' | '↑' | '^' | '↓' | '|' | '>' | '=' {
+      return typeof x === 'string' && /^[&↑^↓|>=]$/.test(x);
     }
 
     function push(x: (typeof stacks)[number][number]) {
@@ -81,6 +88,15 @@ export default function buildAst(expression: string): {
         case '&':
           push(new AndNode(left, right));
           break;
+        case '↑':
+          push(new NandNode(left, right));
+          break;
+        case '^':
+          push(new XorNode(left, right));
+          break;
+        case '↓':
+          push(new NorNode(left, right));
+          break;
         case '|':
           push(new OrNode(left, right));
           break;
@@ -114,6 +130,9 @@ export default function buildAst(expression: string): {
           break;
         }
         case '&':
+        case '↑':
+        case '^':
+        case '↓':
         case '|':
         case '>':
         case '=':
