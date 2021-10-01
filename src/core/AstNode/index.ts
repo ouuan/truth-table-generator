@@ -295,7 +295,7 @@ export function equivalents(node: AstNode): Equivalent[] {
       break;
     case 'nor':
       result.push({
-        name: '与或的定义',
+        name: '或非的定义',
         result: new NotNode(new OrNode(node.ch(0), node.ch(1))),
       });
       break;
