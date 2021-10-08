@@ -10,8 +10,7 @@
     <n-a href="https://github.com/ouuan/truth-table-generator">
       Source Code @ GitHub
     </n-a>
-    <n-card>
-      <n-h2>输入</n-h2>
+    <n-card title="输入">
       <n-p>
         <n-ul>
           <n-li>
@@ -45,15 +44,19 @@
         />
       </n-form-item>
     </n-card>
-    <n-card v-if="validationStatus === 'success'">
-      <n-h2>主范式</n-h2>
+    <n-card
+      v-if="validationStatus === 'success'"
+      title="主范式"
+    >
       <pcnf-and-pdnf
         :atoms="atoms"
         :truths="truths"
       />
     </n-card>
-    <n-card v-if="steps.length > 1">
-      <n-h2>等值演算</n-h2>
+    <n-card
+      v-if="steps.length > 1"
+      title="等值演算"
+    >
       <n-space justify="space-between">
         <simplification-steps :steps="steps" />
         <n-button
@@ -64,8 +67,10 @@
         </n-button>
       </n-space>
     </n-card>
-    <n-card v-if="validationStatus === 'success'">
-      <n-h2>真值表</n-h2>
+    <n-card
+      v-if="validationStatus === 'success'"
+      title="真值表"
+    >
       <n-data-table
         :key="renderCnt"
         :data="data"
@@ -91,7 +96,6 @@ import {
   NCard,
   NDataTable,
   NFormItem,
-  NH2,
   NInput,
   NLi,
   NOl,
