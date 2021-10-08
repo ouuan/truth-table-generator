@@ -45,7 +45,7 @@
       </n-form-item>
     </n-card>
     <n-card
-      v-if="validationStatus === 'success'"
+      v-if="validationStatus === 'success' && atoms.length"
       title="主范式"
     >
       <pcnf-and-pdnf
