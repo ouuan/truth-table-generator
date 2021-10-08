@@ -74,11 +74,9 @@ export function getTable(
   const datas: Data[] = [];
   const truths: boolean[] = [];
 
-  /* eslint-disable no-bitwise */
   for (let mask = 0; mask < (1 << atoms.length); mask += 1) {
     const data: Data = { key: mask };
     for (let i = 0; i < atoms.length; i += 1) {
-      /* eslint-disable no-bitwise */
       data[atoms[i]] = (mask >> (atoms.length - 1 - i)) & 1;
     }
 

@@ -45,6 +45,8 @@ module.exports = {
 
     'no-inner-declarations': 0,
 
+    'no-bitwise': 0,
+
     'max-statements-per-line': ['error', { max: 1 }],
 
     // for generic type parameters
