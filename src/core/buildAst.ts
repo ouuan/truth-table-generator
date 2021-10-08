@@ -31,7 +31,9 @@ export default function buildAst(expression: string): {
   try {
     const exp = expression.replace(/\s/g, '')
       .replace(/∧/g, '&')
+      .replace(/⊼/g, '↑')
       .replace(/⊻|⊕/g, '^')
+      .replace(/⊽/g, '↓')
       .replace(/∨|v/g, '|')
       .replace(/⟷|↔/g, '=')
       .replace(/→/g, '>')
