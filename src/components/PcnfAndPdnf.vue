@@ -47,7 +47,7 @@ const pnf = computed(() => {
   });
 
   return {
-    pcnf: pcnfParts.length ? pcnfParts.join(' ∧ ') : 'T',
+    pcnf: pcnfParts.length ? pcnfParts.reverse().join(' ∧ ') : 'T',
     pdnf: pdnfParts.length ? pdnfParts.join(' ∨ ') : 'F',
     pcnfSub: pcnfNums.reverse().join(','),
     pdnfSub: pdnfNums.join(','),
