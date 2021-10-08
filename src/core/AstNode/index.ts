@@ -206,6 +206,10 @@ export function equivalents(node: AstNode): Equivalent[] {
       });
       break;
     case 'false':
+      result.push({
+        name: 'F = ¬T',
+        result: new NotNode(new TrueNode()),
+      });
       break;
     case 'impliedby':
       result.push({
@@ -462,6 +466,10 @@ export function equivalents(node: AstNode): Equivalent[] {
       });
       break;
     case 'true':
+      result.push({
+        name: 'T = ¬F',
+        result: new NotNode(new FalseNode()),
+      });
       break;
     default:
       exhaustiveCheck(node.type);

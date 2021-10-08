@@ -16,10 +16,10 @@ interface Column {
 export type { Column };
 
 function getColumn(u: AstNode, root: AstNode, addStep: (step: Step) => void): Column {
-  const { children } = u;
+  const { children, type } = u;
 
   const result: Column = {
-    title: children.length ? () => h(SimplificationButton, {
+    title: type !== 'atom' ? () => h(SimplificationButton, {
       node: u,
       root,
       addStep,
