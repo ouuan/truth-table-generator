@@ -1,20 +1,20 @@
 <template>
   <n-p>
-    主合取范式 =
-    ⋀<sub>{{ pnf.pcnfSub }}</sub> =
-    {{ pnf.pcnf }}
+    <n-text>主合取范式 = </n-text>
+    <n-text v-if="pnf.pcnfSub.length">⋀<sub>{{ pnf.pcnfSub }}</sub> = </n-text>
+    <n-text>{{ pnf.pcnf }}</n-text>
   </n-p>
   <n-p>
-    主析取范式 =
-    ⋁<sub>{{ pnf.pdnfSub }}</sub> =
-    {{ pnf.pdnf }}
+    <n-text>主析取范式 = </n-text>
+    <n-text v-if="pnf.pdnfSub.length">⋁<sub>{{ pnf.pdnfSub }}</sub> = </n-text>
+    <n-text>{{ pnf.pdnf }}</n-text>
   </n-p>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
 
-import { NP } from 'naive-ui';
+import { NP, NText } from 'naive-ui';
 
 const props = defineProps<{
   atoms: string[],
