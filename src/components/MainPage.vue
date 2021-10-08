@@ -11,6 +11,7 @@
       Source Code @ GitHub
     </n-a>
     <n-card>
+      <n-h2>输入</n-h2>
       <n-p>
         <n-ul>
           <n-li>
@@ -20,7 +21,7 @@
               <n-li>∧，&amp;</n-li>
               <n-li>↑，⊼ （与非）</n-li>
               <n-li>⊕，^，⊻ （异或）</n-li>
-              <n-li>∨，|，v</n-li>
+              <n-li>∨，|，｜，v</n-li>
               <n-li>↓，⊽ （或非）</n-li>
               <n-li>→，&gt;；它是右结合的</n-li>
               <n-li>←，&lt;</n-li>
@@ -39,14 +40,21 @@
       >
         <n-input
           v-model:value="input"
-          :maxlength="100"
+          :maxlength="200"
           placeholder="!(P & Q) = !P | !Q"
         />
       </n-form-item>
-      <n-space
-        v-if="steps.length > 1"
-        justify="space-between"
-      >
+    </n-card>
+    <n-card v-if="validationStatus === 'success'">
+      <n-h2>主范式</n-h2>
+      <pcnf-and-pdnf
+        :atoms="atoms"
+        :truths="truths"
+      />
+    </n-card>
+    <n-card v-if="steps.length > 1">
+      <n-h2>等值演算</n-h2>
+      <n-space justify="space-between">
         <simplification-steps :steps="steps" />
         <n-button
           type="warning"
@@ -57,6 +65,7 @@
       </n-space>
     </n-card>
     <n-card>
+      <n-h2>真值表</n-h2>
       <n-data-table
         :key="renderCnt"
         :data="data"
@@ -82,6 +91,7 @@ import {
   NCard,
   NDataTable,
   NFormItem,
+  NH2,
   NInput,
   NLi,
   NOl,
@@ -97,6 +107,7 @@ import { getTable, Column } from '~/core/getTable';
 
 import Step from '~/types/step';
 
+import PcnfAndPdnf from '~/components/PcnfAndPdnf.vue';
 import SimplificationSteps from '~/components/SimplificationSteps.vue';
 
 const input = ref('');
@@ -106,6 +117,8 @@ const validationStatus = ref<'success' | 'error' | 'warning' | undefined>(undefi
 const columns = ref<Column[]>([]);
 const data = ref<any[]>([]);
 const renderCnt = ref(0);
+const atoms = ref<string[]>([]);
+const truths = ref<boolean[]>([]);
 
 function addStep(step: Step) {
   steps.value.push(step);
@@ -159,6 +172,8 @@ watch([steps, () => steps.value.length], ([s, len]) => {
   const table = getTable(root, atomNodes, addStep);
   columns.value = table.columns;
   data.value = table.data;
+  atoms.value = table.atoms;
+  truths.value = table.truths;
 
   renderCnt.value += 1;
 });

@@ -36,11 +36,13 @@ export default function buildAst(expression: string): {
       .replace(/⊼/g, '↑')
       .replace(/⊻|⊕/g, '^')
       .replace(/⊽/g, '↓')
-      .replace(/∨|v/g, '|')
+      .replace(/∨|v|｜/g, '|')
       .replace(/⟷|↔/g, '=')
       .replace(/→/g, '>')
       .replace(/←/g, '<')
-      .replace(/¬|~/g, '!');
+      .replace(/¬|~/g, '!')
+      .replace(/（/g, '(')
+      .replace(/）/g, ')');
 
     if (/[^A-Z()!&|><=↑^↓]/.test(exp)) return null;
 

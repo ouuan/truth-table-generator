@@ -72,6 +72,7 @@ export function getTable(
   columns.push(getColumn(root, root, addStep));
 
   const datas: Data[] = [];
+  const truths: boolean[] = [];
 
   /* eslint-disable no-bitwise */
   for (let mask = 0; mask < (1 << atoms.length); mask += 1) {
@@ -81,12 +82,14 @@ export function getTable(
       data[atoms[i]] = (mask >> (atoms.length - 1 - i)) & 1;
     }
 
-    root.dfsTruth(data);
+    truths.push(root.dfsTruth(data));
     datas.push(data);
   }
 
   return {
+    atoms,
     columns,
     data: datas,
+    truths,
   };
 }
