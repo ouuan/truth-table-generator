@@ -3,7 +3,7 @@ import Data from '~/types/data';
 import precedence from './precedence';
 
 abstract class AstNode {
-  abstract type: 'atom' | 'not' | 'and' | 'nand' | 'xor' | 'or' | 'nor' | 'imply' | 'eq' | 'true' | 'false';
+  abstract type: 'atom' | 'not' | 'and' | 'nand' | 'xor' | 'or' | 'nor' | 'imply' | 'impliedby' | 'eq' | 'true' | 'false';
 
   abstract operator: string;
 

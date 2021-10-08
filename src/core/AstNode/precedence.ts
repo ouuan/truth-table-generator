@@ -1,5 +1,6 @@
 export default {
   eq: 5,
+  impliedby: 4.1,
   imply: 4,
   nor: 3.1,
   or: 3,

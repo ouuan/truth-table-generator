@@ -9,6 +9,7 @@ import {
   OrNode,
   NorNode,
   ImplyNode,
+  ImpliedByNode,
   EqNode,
   TrueNode,
   FalseNode,
@@ -16,6 +17,7 @@ import {
 
 const precedence = {
   '=': 5,
+  '<': 4.1,
   '>': 4,
   '↓': 3.1,
   '|': 3,
@@ -37,18 +39,19 @@ export default function buildAst(expression: string): {
       .replace(/∨|v/g, '|')
       .replace(/⟷|↔/g, '=')
       .replace(/→/g, '>')
+      .replace(/←/g, '<')
       .replace(/¬|~/g, '!');
 
-    if (/[^A-Z()!&|>=↑^↓]/.test(exp)) return null;
+    if (/[^A-Z()!&|><=↑^↓]/.test(exp)) return null;
 
-    const stacks: (AstNode | '&' | '↑' | '^' | '↓' | '|' | '>' | '=' | '!')[][] = [[]];
+    const stacks: (AstNode | '&' | '↑' | '^' | '↓' | '|' | '>' | '<' | '=' | '!')[][] = [[]];
 
     function current() {
       return stacks[stacks.length - 1];
     }
 
-    function isBinaryOperator(x: unknown): x is '&' | '↑' | '^' | '↓' | '|' | '>' | '=' {
-      return typeof x === 'string' && /^[&↑^↓|>=]$/.test(x);
+    function isBinaryOperator(x: unknown): x is '&' | '↑' | '^' | '↓' | '|' | '>' | '<' | '=' {
+      return typeof x === 'string' && /^[&↑^↓|><=]$/.test(x);
     }
 
     function push(x: (typeof stacks)[number][number]) {
@@ -105,6 +108,9 @@ export default function buildAst(expression: string): {
         case '>':
           push(new ImplyNode(left, right));
           break;
+        case '<':
+          push(new ImpliedByNode(left, right));
+          break;
         case '=':
           push(new EqNode(left, right));
           break;
@@ -137,6 +143,7 @@ export default function buildAst(expression: string): {
         case '↓':
         case '|':
         case '>':
+        case '<':
         case '=':
         {
           while (current().length > 1) {

@@ -8,6 +8,7 @@ import XorNode from './XorNode';
 import OrNode from './OrNode';
 import NorNode from './NorNode';
 import ImplyNode from './ImplyNode';
+import ImpliedByNode from './ImpliedByNode';
 import EqNode from './EqNode';
 import TrueNode from './TrueNode';
 import FalseNode from './FalseNode';
@@ -23,6 +24,7 @@ export {
   OrNode,
   NorNode,
   ImplyNode,
+  ImpliedByNode,
   EqNode,
   TrueNode,
   FalseNode,
@@ -131,8 +133,7 @@ export function equivalents(node: AstNode): Equivalent[] {
           result: new EqNode(node.ch(0).ch(0), node.ch(0).ch(1)),
         });
       }
-      if (node.ch(0).type === 'imply' && node.ch(1).type === 'imply'
-        && node.ch(1).ch(1).type === 'not'
+      if (node.ch(0).type === 'imply' && node.ch(1).type === 'imply' && node.ch(1).ch(1).type === 'not'
         && node.ch(0).ch(0).toString() === node.ch(1).ch(0).toString()
         && node.ch(0).ch(1).toString() === node.ch(1).ch(1).ch(0).toString()) {
         result.push({
@@ -205,6 +206,12 @@ export function equivalents(node: AstNode): Equivalent[] {
       });
       break;
     case 'false':
+      break;
+    case 'impliedby':
+      result.push({
+        name: '被蕴含的定义',
+        result: new ImplyNode(node.ch(1), node.ch(0)),
+      });
       break;
     case 'imply':
       if (node.ch(1).type === 'imply') {

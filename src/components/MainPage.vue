@@ -23,6 +23,7 @@
               <n-li>∨，|，v</n-li>
               <n-li>↓，⊽ （或非）</n-li>
               <n-li>→，&gt;；它是右结合的</n-li>
+              <n-li>←，&lt;</n-li>
               <n-li>↔，⟷，=</n-li>
             </n-ol>
           </n-li>
