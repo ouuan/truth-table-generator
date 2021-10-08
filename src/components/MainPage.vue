@@ -64,7 +64,7 @@
         </n-button>
       </n-space>
     </n-card>
-    <n-card>
+    <n-card v-if="validationStatus === 'success'">
       <n-h2>真值表</n-h2>
       <n-data-table
         :key="renderCnt"
