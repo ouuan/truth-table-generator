@@ -45,7 +45,7 @@
       </n-form-item>
     </n-card>
     <n-card
-      v-if="validationStatus === 'success' && atoms.length"
+      v-if="ok && atoms.length"
       title="主范式"
     >
       <pcnf-and-pdnf
@@ -68,7 +68,7 @@
       </n-space>
     </n-card>
     <n-card
-      v-if="validationStatus === 'success'"
+      v-if="ok"
       title="真值表"
     >
       <n-data-table
@@ -123,6 +123,7 @@ const data = ref<any[]>([]);
 const renderCnt = ref(0);
 const atoms = ref<string[]>([]);
 const truths = ref<boolean[]>([]);
+const ok = ref(false);
 
 function addStep(step: Step) {
   steps.value.push(step);
@@ -137,6 +138,8 @@ watch(input, (exp) => {
 });
 
 watch([steps, () => steps.value.length], ([s, len]) => {
+  ok.value = false;
+
   const { exp } = s[len - 1];
 
   columns.value = [];
@@ -165,13 +168,15 @@ watch([steps, () => steps.value.length], ([s, len]) => {
     validationStatus.value = 'error';
     return;
   }
-  if (atomNodes.size > 7) {
+  if (atomNodes.size > 6) {
     feedback.value = '命题变项有点多诶 🤔';
     validationStatus.value = 'warning';
   } else {
     feedback.value = '';
     validationStatus.value = 'success';
   }
+
+  ok.value = true;
 
   const table = getTable(root, atomNodes, addStep);
   columns.value = table.columns;

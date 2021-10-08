@@ -1,26 +1,36 @@
 <template>
-  <n-p>
-    主合取范式 =
-    <span v-if="pnf.pcnfSub.length">
-      ⋀
-      <sub>{{ pnf.pcnfSub }}</sub> =
-    </span>
-    {{ pnf.pcnf }}
-  </n-p>
-  <n-p>
-    主析取范式 =
-    <span v-if="pnf.pdnfSub.length">
-      ⋁
-      <sub>{{ pnf.pdnfSub }}</sub> =
-    </span>
-    {{ pnf.pdnf }}
-  </n-p>
+  <p>
+    <n-ellipsis
+      expand-trigger="click"
+      :line-clamp="1"
+      :tooltip="false"
+    >
+      主合取范式 =
+      <span v-if="pnf.pcnfSub.length">
+        ⋀<sub>{{ pnf.pcnfSub }}</sub> =
+      </span>
+      {{ pnf.pcnf }}
+    </n-ellipsis>
+  </p>
+  <p>
+    <n-ellipsis
+      expand-trigger="click"
+      :line-clamp="1"
+      :tooltip="false"
+    >
+      主析取范式 =
+      <span v-if="pnf.pdnfSub.length">
+        ⋁<sub>{{ pnf.pdnfSub }}</sub> =
+      </span>
+      {{ pnf.pdnf }}
+    </n-ellipsis>
+  </p>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
 
-import { NP } from 'naive-ui';
+import { NEllipsis } from 'naive-ui';
 
 const props = defineProps<{
   atoms: string[],
@@ -54,8 +64,8 @@ const pnf = computed(() => {
   return {
     pcnf: pcnfParts.length ? pcnfParts.reverse().join(' ∧ ') : 'T',
     pdnf: pdnfParts.length ? pdnfParts.join(' ∨ ') : 'F',
-    pcnfSub: pcnfNums.reverse().join(','),
-    pdnfSub: pdnfNums.join(','),
+    pcnfSub: pcnfNums.reverse().join(', '),
+    pdnfSub: pdnfNums.join(', '),
   };
 });
 </script>
