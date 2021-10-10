@@ -342,7 +342,7 @@ export default class QuineMcCluskey {
       // Iterate through all the bits in the implicants value
       for (let j = 0; j < implicant.getValue().length; j += 1) {
         if (implicant.getValue().charAt(j) === (this.isMaxterm ? '1' : '0')) {
-          result += '!';
+          result += '¬';
         }
         if (implicant.getValue().charAt(j) !== '-') {
           result += this.variables[j];
@@ -357,7 +357,7 @@ export default class QuineMcCluskey {
             < implicant.getValue().length - j - 1
           && implicant.getValue().charAt(j) !== '-'
         ) {
-          result += this.isMaxterm ? ' | ' : ' & ';
+          result += this.isMaxterm ? ' ∨ ' : ' ∧ ';
         }
       }
 
@@ -371,7 +371,7 @@ export default class QuineMcCluskey {
 
       // Combine minterms with an OR operator
       if (i < primeImplicants.length - 1) {
-        result += this.isMaxterm ? ' & ' : ' | ';
+        result += this.isMaxterm ? ' ∧ ' : ' ∨ ';
       }
     }
 
