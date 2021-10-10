@@ -46,7 +46,7 @@
     </n-card>
     <n-card
       v-if="ok && atoms.length"
-      title="主范式"
+      title="主范式与最简范式"
     >
       <pcnf-and-pdnf
         :atoms="atoms"
