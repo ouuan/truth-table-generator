@@ -16,15 +16,15 @@
           <n-li>
             运算符的种类，表示方法，以及优先级顺序：
             <n-ol>
-              <n-li>¬，!，~</n-li>
-              <n-li>∧，&amp;</n-li>
-              <n-li>↑，⊼ （与非）</n-li>
-              <n-li>⊕，^，⊻ （异或）</n-li>
-              <n-li>∨，|，｜，v</n-li>
-              <n-li>↓，⊽ （或非）</n-li>
-              <n-li>→，&gt;；它是右结合的</n-li>
-              <n-li>←，&lt;</n-li>
-              <n-li>↔，⟷，=</n-li>
+              <n-li>非: ¬, !, ！, ~</n-li>
+              <n-li>与: ∧, &amp;</n-li>
+              <n-li>与非: ↑, ⊼</n-li>
+              <n-li>异或: ⊕, ^, ⊻</n-li>
+              <n-li>或: ∨, |, ｜, v</n-li>
+              <n-li>或非: ↓, ⊽</n-li>
+              <n-li>蕴含（右结合）: →, &gt;</n-li>
+              <n-li>被蕴含: ←, &lt;</n-li>
+              <n-li>等价: ↔, ⟷, =</n-li>
             </n-ol>
           </n-li>
           <n-li>T/F 表示 true/false</n-li>
