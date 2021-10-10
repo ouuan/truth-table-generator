@@ -40,7 +40,7 @@ export default function buildAst(expression: string): {
       .replace(/⟷|↔/g, '=')
       .replace(/→/g, '>')
       .replace(/←/g, '<')
-      .replace(/¬|~/g, '!')
+      .replace(/¬|~|！/g, '!')
       .replace(/（/g, '(')
       .replace(/）/g, ')');
 

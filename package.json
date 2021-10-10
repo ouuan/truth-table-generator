@@ -14,7 +14,7 @@
     "build": "yarn lint && yarn lint:types && vite build"
   },
   "dependencies": {
-    "naive-ui": "^2.19.5",
+    "naive-ui": "2.19.3",
     "ts-exhaustive-check": "^1.0.0",
     "vue": "^3.2.20"
   },
