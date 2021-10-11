@@ -46,9 +46,9 @@
     </n-card>
     <n-card
       v-if="ok && atoms.length"
-      title="主范式"
+      title="主范式与最简范式"
     >
-      <pcnf-and-pdnf
+      <normal-forms
         :atoms="atoms"
         :truths="truths"
       />
@@ -111,7 +111,7 @@ import { getTable, Column } from '~/core/getTable';
 
 import Step from '~/types/step';
 
-import PcnfAndPdnf from '~/components/PcnfAndPdnf.vue';
+import NormalForms from '~/components/NormalForms.vue';
 import SimplificationSteps from '~/components/SimplificationSteps.vue';
 
 const input = ref('');

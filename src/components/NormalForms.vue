@@ -7,7 +7,8 @@
     >
       主合取范式 =
       <span v-if="pnf.pcnfSub.length">
-        ⋀<sub>{{ pnf.pcnfSub }}</sub> =
+        ⋀
+        <sub>{{ pnf.pcnfSub }}</sub> =
       </span>
       {{ pnf.pcnf }}
     </n-ellipsis>
@@ -20,9 +21,30 @@
     >
       主析取范式 =
       <span v-if="pnf.pdnfSub.length">
-        ⋁<sub>{{ pnf.pdnfSub }}</sub> =
+        ⋁
+        <sub>{{ pnf.pdnfSub }}</sub> =
       </span>
       {{ pnf.pdnf }}
+    </n-ellipsis>
+  </p>
+  <p>
+    <n-ellipsis
+      expand-trigger="click"
+      :line-clamp="1"
+      :tooltip="false"
+    >
+      最简合取范式 =
+      {{ mnf.cnf }}
+    </n-ellipsis>
+  </p>
+  <p>
+    <n-ellipsis
+      expand-trigger="click"
+      :line-clamp="1"
+      :tooltip="false"
+    >
+      最简析取范式 =
+      {{ mnf.dnf }}
     </n-ellipsis>
   </p>
 </template>
@@ -31,6 +53,7 @@
 import { computed } from 'vue';
 
 import { NEllipsis } from 'naive-ui';
+import QuineMcCluskey from '~/core/QuineMcCluskey';
 
 const props = defineProps<{
   atoms: string[],
@@ -66,6 +89,24 @@ const pnf = computed(() => {
     pdnf: pdnfParts.length ? pdnfParts.join(' ∨ ') : 'F',
     pcnfSub: pcnfNums.reverse().join(', '),
     pdnfSub: pdnfNums.join(', '),
+    pdnfNums,
+    pcnfNums,
   };
 });
+
+const mnf = computed(() => {
+  const cnf = new QuineMcCluskey(
+    props.atoms.join(''),
+    pnf.value.pcnfNums.map((x) => props.truths.length - 1 - x),
+    [],
+    true,
+  ).getFunction();
+  const dnf = new QuineMcCluskey(props.atoms.join(''), pnf.value.pdnfNums, []).getFunction();
+
+  return {
+    dnf,
+    cnf,
+  };
+});
+
 </script>
