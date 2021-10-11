@@ -56,15 +56,15 @@ const pnf = computed(() => {
       pdnfNums.push(i);
       pdnfParts.push(`(${parts.join(' ∧ ')})`);
     } else {
-      pcnfNums.push(props.truths.length - 1 - i);
+      pcnfNums.push(i);
       pcnfParts.push(`(${parts.join(' ∨ ')})`);
     }
   });
 
   return {
-    pcnf: pcnfParts.length ? pcnfParts.reverse().join(' ∧ ') : 'T',
+    pcnf: pcnfParts.length ? pcnfParts.join(' ∧ ') : 'T',
     pdnf: pdnfParts.length ? pdnfParts.join(' ∨ ') : 'F',
-    pcnfSub: pcnfNums.reverse().join(', '),
+    pcnfSub: pcnfNums.join(', '),
     pdnfSub: pdnfNums.join(', '),
   };
 });
