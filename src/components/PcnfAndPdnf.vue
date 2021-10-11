@@ -33,8 +33,18 @@
       :line-clamp="1"
       :tooltip="false"
     >
-      最简范式 =
-      {{ minp }}
+      最简合取范式 =
+      {{ mnf.cnf }}
+    </n-ellipsis>
+  </p>
+  <p>
+    <n-ellipsis
+      expand-trigger="click"
+      :line-clamp="1"
+      :tooltip="false"
+    >
+      最简析取范式 =
+      {{ mnf.dnf }}
     </n-ellipsis>
   </p>
 </template>
@@ -80,12 +90,18 @@ const pnf = computed(() => {
     pcnfSub: pcnfNums.reverse().join(', '),
     pdnfSub: pdnfNums.join(', '),
     pdnfNums,
+    pcnfNums,
   };
 });
 
-const minp = computed(() => {
-  const qm = new QuineMcCluskey(props.atoms.join(''), pnf.value.pdnfNums);
-  return qm.getFunction();
+const mnf = computed(() => {
+  const cnf = new QuineMcCluskey(props.atoms.join(''), pnf.value.pcnfNums, [], true).getFunction();
+  const dnf = new QuineMcCluskey(props.atoms.join(''), pnf.value.pdnfNums, []).getFunction();
+
+  return {
+    dnf,
+    cnf,
+  };
 });
 
 </script>
