@@ -95,7 +95,12 @@ const pnf = computed(() => {
 });
 
 const mnf = computed(() => {
-  const cnf = new QuineMcCluskey(props.atoms.join(''), pnf.value.pcnfNums, [], true).getFunction();
+  const cnf = new QuineMcCluskey(
+    props.atoms.join(''),
+    pnf.value.pcnfNums.map((x) => props.truths.length - 1 - x),
+    [],
+    true,
+  ).getFunction();
   const dnf = new QuineMcCluskey(props.atoms.join(''), pnf.value.pdnfNums, []).getFunction();
 
   return {
