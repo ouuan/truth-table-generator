@@ -28,7 +28,8 @@ import {
 
 import { ref } from 'vue';
 
-import { AstNode, equivalents } from '~/core/AstNode';
+import { AstNode } from '~/core/AstNode';
+import equivalents from '~/core/equivalents';
 
 import Step from '~/types/step';
 import type Equivalent from '~/types/equivalent';
