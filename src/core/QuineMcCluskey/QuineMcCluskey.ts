@@ -310,7 +310,7 @@ export default class QuineMcCluskey {
 
     // Check if there are no prime implicants; Always False
     if (primeImplicants.length === 0) {
-      return '0';
+      return 'T';
     }
 
     if (primeImplicants.length === 1) {
@@ -321,7 +321,7 @@ export default class QuineMcCluskey {
         }
       }
       if (count === this.variables.length) {
-        return '1';
+        return 'F';
       }
     }
 
