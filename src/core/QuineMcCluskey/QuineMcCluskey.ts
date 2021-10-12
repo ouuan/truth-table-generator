@@ -310,7 +310,7 @@ export default class QuineMcCluskey {
 
     // Check if there are no prime implicants; Always False
     if (primeImplicants.length === 0) {
-      return 'T';
+      return this.isMaxterm ? 'T' : 'F';
     }
 
     if (primeImplicants.length === 1) {
@@ -321,7 +321,7 @@ export default class QuineMcCluskey {
         }
       }
       if (count === this.variables.length) {
-        return 'F';
+        return this.isMaxterm ? 'F' : 'T';
       }
     }
 
@@ -354,7 +354,7 @@ export default class QuineMcCluskey {
               .substring(j + 1)
               .match(/-/g) || []
           ).length
-            < implicant.getValue().length - j - 1
+          < implicant.getValue().length - j - 1
           && implicant.getValue().charAt(j) !== '-'
         ) {
           result += this.isMaxterm ? ' ∨ ' : ' ∧ ';
