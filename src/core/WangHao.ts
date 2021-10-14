@@ -25,6 +25,8 @@ export default class WangHao {
 
   key: number;
 
+  private rule = '';
+
   constructor(root: AstNode);
 
   constructor(old: WangHao);
@@ -37,7 +39,10 @@ export default class WangHao {
       if (x.toString().length > 1) {
         this.right.add(x);
       }
-      if (x.type === 'true') this.isTrue = true;
+      if (x.type === 'true') {
+        this.isTrue = true;
+        this.rule = 'T ⇒ T';
+      }
       this.key = 1;
       this.tot = { value: 1 };
     } else {
@@ -81,7 +86,10 @@ export default class WangHao {
     if (this[`${side}Str`].has(node.toString())) return;
     this[`${side}Str`].add(node.toString());
     if (node.toString().length > 1) this[side].add(node);
-    if (this[side === 'left' ? 'rightStr' : 'leftStr'].has(node.toString())) this.isTrue = true;
+    if (this[side === 'left' ? 'rightStr' : 'leftStr'].has(node.toString())) {
+      this.isTrue = true;
+      this.rule = `${node} ⇒ ${node}`;
+    }
   }
 
   solve(): WangHaoProof {
@@ -93,6 +101,8 @@ export default class WangHao {
 
         const a = new WangHao(this);
         a.del(node, 'left');
+
+        this.rule = `${node.operator} ⇒`;
 
         switch (node.type) {
           case 'not':
@@ -157,6 +167,8 @@ export default class WangHao {
 
         const a = new WangHao(this);
         a.del(node, 'right');
+
+        this.rule = `⇒ ${node.operator}`;
 
         switch (node.type) {
           case 'not':
@@ -229,7 +241,7 @@ export default class WangHao {
 
     return {
       key: `${Number(this.isTrue)}-${this.key}-wh-${new Date().valueOf()}`,
-      label: this.toString(),
+      label: this.toString() + (this.rule ? ` （${this.rule}）` : ''),
       isTrue: this.isTrue,
       children: children.length === 0 ? undefined : children,
       isLeaf: children.length === 0,

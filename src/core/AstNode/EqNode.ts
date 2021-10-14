@@ -4,7 +4,7 @@ import Data from '~/types/data';
 export default class extends AstNode {
   type = 'eq' as const;
 
-  operator = '⟷';
+  operator = '↔';
 
   constructor(left: AstNode, right: AstNode) {
     super();
