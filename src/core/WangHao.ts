@@ -1,5 +1,7 @@
 import { exhaustiveCheck } from 'ts-exhaustive-check';
-import { TreeOption } from 'naive-ui';
+import { NText, TreeOption } from 'naive-ui';
+import { h } from 'vue';
+
 import { AstNode } from './AstNode';
 import equivalents from './equivalents';
 
@@ -241,10 +243,15 @@ export default class WangHao {
 
     return {
       key: `${Number(this.isTrue)}-${this.key}-wh-${new Date().valueOf()}`,
-      label: this.toString() + (this.rule ? ` （${this.rule}）` : ''),
+      label: this.toString(),
       isTrue: this.isTrue,
       children: children.length === 0 ? undefined : children,
       isLeaf: children.length === 0,
+      suffix: () => h(NText, {
+        type: 'info',
+      }, {
+        default: () => (this.rule ? this.rule : undefined),
+      }),
     };
   }
 }
