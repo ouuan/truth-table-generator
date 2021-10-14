@@ -49,6 +49,8 @@ module.exports = {
 
     'max-statements-per-line': ['error', { max: 1 }],
 
+    'no-restricted-syntax': ['error', 'ForInStatement', 'LabeledStatement', 'WithStatement'],
+
     // for generic type parameters
     'no-spaced-func': 0,
     'func-call-spacing': 0,

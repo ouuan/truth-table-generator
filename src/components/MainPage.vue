@@ -69,6 +69,12 @@
     </n-card>
     <n-card
       v-if="ok"
+      title="王浩算法"
+    >
+      <wang-hao-proof :root="root as AstNode" />
+    </n-card>
+    <n-card
+      v-if="ok"
       title="真值表"
     >
       <n-data-table
@@ -106,6 +112,7 @@ import {
   useThemeVars,
 } from 'naive-ui';
 
+import { AstNode } from '~/core/AstNode';
 import buildAst from '~/core/buildAst';
 import { getTable, Column } from '~/core/getTable';
 
@@ -113,6 +120,7 @@ import Step from '~/types/step';
 
 import NormalForms from '~/components/NormalForms.vue';
 import SimplificationSteps from '~/components/SimplificationSteps.vue';
+import WangHaoProof from '~/components/WangHaoProof.vue';
 
 const input = ref('');
 const steps = ref<Step[]>([]);
@@ -124,6 +132,7 @@ const renderCnt = ref(0);
 const atoms = ref<string[]>([]);
 const truths = ref<boolean[]>([]);
 const ok = ref(false);
+const root = ref<AstNode | null>(null);
 
 function addStep(step: Step) {
   steps.value.push(step);
@@ -159,9 +168,10 @@ watch([steps, () => steps.value.length], ([s, len]) => {
     return;
   }
 
-  const { root, atomNodes } = result;
+  const { atomNodes } = result;
+  root.value = result.root;
 
-  if (len === 1) steps.value[0].exp = root.toString();
+  if (len === 1) steps.value[0].exp = root.value.toString();
 
   if (atomNodes.size > 12) {
     feedback.value = '命题变项太多了 😫';
@@ -178,7 +188,7 @@ watch([steps, () => steps.value.length], ([s, len]) => {
 
   ok.value = true;
 
-  const table = getTable(root, atomNodes, addStep);
+  const table = getTable(result.root, atomNodes, addStep);
   columns.value = table.columns;
   data.value = table.data;
   atoms.value = table.atoms;

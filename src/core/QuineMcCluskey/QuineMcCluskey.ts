@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import Minterm from './Minterm';
 import { decToBin, valueIn } from './utils';
 
