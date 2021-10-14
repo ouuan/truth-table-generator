@@ -57,7 +57,7 @@
       v-if="ok"
       title="王浩算法"
     >
-      <wang-hao-proof :root="root as AstNode" />
+      <wang-hao-proof :root="rawRoot as AstNode" />
     </n-card>
     <n-card
       v-if="steps.length > 1"
@@ -132,7 +132,7 @@ const renderCnt = ref(0);
 const atoms = ref<string[]>([]);
 const truths = ref<boolean[]>([]);
 const ok = ref(false);
-const root = ref<AstNode | null>(null);
+const rawRoot = ref<AstNode | null>(null);
 
 function addStep(step: Step) {
   steps.value.push(step);
@@ -168,10 +168,10 @@ watch([steps, () => steps.value.length], ([s, len]) => {
     return;
   }
 
-  const { atomNodes } = result;
-  root.value = result.root;
+  const { root, atomNodes } = result;
+  if (len === 1) rawRoot.value = root;
 
-  if (len === 1) steps.value[0].exp = root.value.toString();
+  if (len === 1) steps.value[0].exp = root.toString();
 
   if (atomNodes.size > 12) {
     feedback.value = '命题变项太多了 😫';
