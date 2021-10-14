@@ -139,7 +139,9 @@ export default class WangHao {
           case 'nand':
           case 'impliedby':
           {
-            a.add(equivalents(node)[0].result, 'left');
+            const { result } = equivalents(node)[0];
+            result.updateStr();
+            a.add(result, 'left');
             children.push(a.solve());
             break;
           }
@@ -200,7 +202,9 @@ export default class WangHao {
           case 'nand':
           case 'impliedby':
           {
-            a.add(equivalents(node)[0].result, 'right');
+            const { result } = equivalents(node)[0];
+            result.updateStr();
+            a.add(result, 'right');
             children.push(a.solve());
             break;
           }
