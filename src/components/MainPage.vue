@@ -54,6 +54,12 @@
       />
     </n-card>
     <n-card
+      v-if="ok"
+      title="王浩算法"
+    >
+      <wang-hao-proof :root="root as AstNode" />
+    </n-card>
+    <n-card
       v-if="steps.length > 1"
       title="等值演算"
     >
@@ -66,12 +72,6 @@
           撤销
         </n-button>
       </n-space>
-    </n-card>
-    <n-card
-      v-if="ok"
-      title="王浩算法"
-    >
-      <wang-hao-proof :root="root as AstNode" />
     </n-card>
     <n-card
       v-if="ok"
