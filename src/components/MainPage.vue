@@ -5,7 +5,7 @@
   >
     <n-page-header
       title="真值表生成器"
-      subtitle="by. ouuan"
+      subtitle="by. ouuan ——「是个真值表生成器，但不完全是～」"
     />
     <n-a href="https://github.com/ouuan/truth-table-generator">
       Source Code @ GitHub
