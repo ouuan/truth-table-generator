@@ -59,7 +59,6 @@
       v-if="ok"
       title="王浩算法"
     >
-      <n-p>点击左侧三角可以展开定理推演过程，式子的颜色表示是否是重言式（定理），每行最右侧是下一步所使用的规则。</n-p>
       <wang-hao-proof :root="rawRoot as AstNode" />
     </n-card>
     <n-card

@@ -4,6 +4,7 @@ import { h } from 'vue';
 
 import { AstNode } from './AstNode';
 import equivalents from './equivalents';
+import WangHaoTooLongError from '~/types/WangHaoTooLongError';
 
 interface WangHaoProof extends TreeOption {
   key: string;
@@ -54,6 +55,7 @@ export default class WangHao {
       for (const r of x.rightStr) this.rightStr.add(r);
       this.tot = x.tot;
       this.tot.value += 1;
+      if (this.tot.value > 1e4) throw new WangHaoTooLongError();
       this.key = x.tot.value;
     }
   }
