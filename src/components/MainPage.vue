@@ -29,7 +29,6 @@
           </n-li>
           <n-li>T/F 表示 true/false</n-li>
           <n-li>命题变项用除了 T/F 的单个大写字母表示</n-li>
-          <n-li>可以点击表头中的按钮来进行等值演算；如果没有发现你想要的规则，很可能是要多用几次交换律</n-li>
         </n-ul>
       </n-p>
       <n-form-item
@@ -48,6 +47,7 @@
       v-if="ok && atoms.length"
       title="主范式与最简范式"
     >
+      <n-p>如果太长了，式子会被省略，点击式子就可以全部显示。</n-p>
       <normal-forms
         :atoms="atoms"
         :truths="truths"
@@ -57,6 +57,7 @@
       v-if="ok"
       title="王浩算法"
     >
+      <n-p>点击左侧三角可以展开定理推演过程，式子的颜色表示是否是重言式（定理），每行最右侧是下一步所使用的规则。</n-p>
       <wang-hao-proof :root="rawRoot as AstNode" />
     </n-card>
     <n-card
@@ -77,6 +78,7 @@
       v-if="ok"
       title="真值表"
     >
+      <n-p>可以点击表头中的按钮来进行等值演算。如果没有发现你想要的规则，很可能是要多用几次交换律。</n-p>
       <n-data-table
         :key="renderCnt"
         :data="data"
