@@ -32,6 +32,10 @@ function renderLabel({ option }: { option: TreeOption }) {
   if (typeof key === 'string' && key[0] === '1') type = 'success';
   return h(NText, {
     type,
+    style: {
+      minWidth: '10em',
+      display: 'inline-block',
+    },
   }, {
     default: () => option.label,
   });

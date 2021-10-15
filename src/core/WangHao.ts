@@ -249,6 +249,10 @@ export default class WangHao {
       isLeaf: children.length === 0,
       suffix: () => h(NText, {
         type: 'info',
+        style: {
+          minWidth: '4em',
+          textAlign: 'right',
+        },
       }, {
         default: () => (this.rule ? this.rule : undefined),
       }),
