@@ -47,7 +47,9 @@
       v-if="ok && atoms.length"
       title="主范式与最简范式"
     >
-      <n-p>如果太长了，式子会被省略，点击式子就可以全部显示。</n-p>
+      <n-p v-if="nfLong">
+        如果太长了，式子会被省略，点击式子就可以全部显示。
+      </n-p>
       <normal-forms
         :atoms="atoms"
         :truths="truths"
@@ -78,7 +80,9 @@
       v-if="ok"
       title="真值表"
     >
-      <n-p>可以点击表头中的按钮来进行等值演算。如果没有发现你想要的规则，很可能是要多用几次交换律。</n-p>
+      <n-p v-if="canReduce">
+        可以点击表头中的按钮来进行等值演算。如果没有发现你想要的规则，很可能是要多用几次交换律。
+      </n-p>
       <n-data-table
         :key="renderCnt"
         :data="data"
@@ -94,6 +98,7 @@
 <script setup lang="ts">
 import {
   ref,
+  computed,
   watch,
   toRef,
 } from 'vue';
@@ -200,6 +205,10 @@ watch([steps, () => steps.value.length], ([s, len]) => {
 
   renderCnt.value += 1;
 });
+
+const nfLong = computed(() => atoms.value.length >= 3);
+
+const canReduce = computed(() => steps.value[steps.value.length - 1].exp.length > 1);
 
 const successColor = toRef(useThemeVars().value, 'successColor');
 </script>
