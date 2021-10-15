@@ -171,9 +171,6 @@ watch([steps, () => steps.value.length], ([s, len]) => {
   }
 
   const { root, atomNodes } = result;
-  if (len === 1) rawRoot.value = root;
-
-  if (len === 1) steps.value[0].exp = root.toString();
 
   if (atomNodes.size > 12) {
     feedback.value = '命题变项太多了 😫';
@@ -193,8 +190,13 @@ watch([steps, () => steps.value.length], ([s, len]) => {
   const table = getTable(result.root, atomNodes, addStep);
   columns.value = table.columns;
   data.value = table.data;
-  atoms.value = table.atoms;
-  truths.value = table.truths;
+
+  if (len === 1) {
+    rawRoot.value = root;
+    steps.value[0].exp = root.toString();
+    atoms.value = table.atoms;
+    truths.value = table.truths;
+  }
 
   renderCnt.value += 1;
 });
