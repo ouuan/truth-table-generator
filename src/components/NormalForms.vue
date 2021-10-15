@@ -27,25 +27,30 @@
       {{ pnf.pdnf }}
     </n-ellipsis>
   </p>
-  <p>
-    <n-ellipsis
-      expand-trigger="click"
-      :line-clamp="1"
-      :tooltip="false"
-    >
-      最简合取范式 =
-      {{ mnf.cnf }}
-    </n-ellipsis>
-  </p>
-  <p>
-    <n-ellipsis
-      expand-trigger="click"
-      :line-clamp="1"
-      :tooltip="false"
-    >
-      最简析取范式 =
-      {{ mnf.dnf }}
-    </n-ellipsis>
+  <template v-if="mnf">
+    <p>
+      <n-ellipsis
+        expand-trigger="click"
+        :line-clamp="1"
+        :tooltip="false"
+      >
+        最简合取范式 =
+        {{ mnf.cnf }}
+      </n-ellipsis>
+    </p>
+    <p>
+      <n-ellipsis
+        expand-trigger="click"
+        :line-clamp="1"
+        :tooltip="false"
+      >
+        最简析取范式 =
+        {{ mnf.dnf }}
+      </n-ellipsis>
+    </p>
+  </template>
+  <p v-else>
+    命题变项太多了，最简范式算不过来了 😢
   </p>
 </template>
 
@@ -95,6 +100,8 @@ const pnf = computed(() => {
 });
 
 const mnf = computed(() => {
+  if (props.atoms.length > 9) return null;
+
   const cnf = new QuineMcCluskey(
     props.atoms.join(''),
     pnf.value.pcnfNums.map((x) => props.truths.length - 1 - x),
