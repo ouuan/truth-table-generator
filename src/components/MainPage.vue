@@ -5,11 +5,11 @@
   >
     <n-page-header
       title="真值表生成器"
-      subtitle="by. ouuan ——「是个真值表生成器，但不完全是～」"
+      subtitle="「是个真值表生成器，但不完全是～」"
     />
-    <n-a href="https://github.com/ouuan/truth-table-generator">
-      Source Code @ GitHub
-    </n-a>
+    <n-card title="关于">
+      <about-section />
+    </n-card>
     <n-card title="输入">
       <n-p>
         <n-ul>
@@ -103,7 +103,6 @@ import {
 } from 'vue';
 
 import {
-  NA,
   NButton,
   NCard,
   NDataTable,
@@ -124,9 +123,10 @@ import { getTable, Column } from '~/core/getTable';
 
 import Step from '~/types/step';
 
-import NormalForms from '~/components/NormalForms.vue';
-import SimplificationSteps from '~/components/SimplificationSteps.vue';
-import WangHaoProof from '~/components/WangHaoProof.vue';
+import AboutSection from './AboutSection.vue';
+import NormalForms from './NormalForms.vue';
+import SimplificationSteps from './SimplificationSteps.vue';
+import WangHaoProof from './WangHaoProof.vue';
 
 const input = ref('');
 const steps = ref<Step[]>([]);
