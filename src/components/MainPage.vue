@@ -58,31 +58,38 @@
           </n-form-item>
         </n-collapse-item>
         <n-collapse-item
-          v-if="ok && atoms.length"
+          v-show="ok && atoms.length"
           title="主范式与最简范式"
           name="nf"
         >
-          <n-p v-if="nfLong">
+          <n-p v-show="nfLong">
             如果太长了，式子会被省略，点击式子就可以全部显示。
           </n-p>
           <normal-forms
+            v-if="ok && atoms.length"
             :atoms="atoms"
             :truths="truths"
           />
         </n-collapse-item>
         <n-collapse-item
-          v-if="ok"
+          v-show="ok"
           title="王浩算法"
           name="wanghao"
         >
-          <wang-hao-proof :root="rawRoot as AstNode" />
+          <wang-hao-proof
+            v-if="ok"
+            :root="rawRoot as AstNode"
+          />
         </n-collapse-item>
         <n-collapse-item
-          v-if="steps.length > 1"
+          v-show="steps.length > 1"
           title="等值演算"
           name="simplify"
         >
-          <n-space justify="space-between">
+          <n-space
+            v-if="steps.length > 1"
+            justify="space-between"
+          >
             <simplification-steps :steps="steps" />
             <n-button
               type="warning"
@@ -93,14 +100,15 @@
           </n-space>
         </n-collapse-item>
         <n-collapse-item
-          v-if="ok"
+          v-show="ok"
           title="真值表"
           name="table"
         >
-          <n-p v-if="canReduce">
+          <n-p v-show="canReduce">
             可以点击表头中的按钮来进行等值演算。如果没有发现你想要的规则，很可能是要多用几次交换律。
           </n-p>
           <n-data-table
+            v-if="ok"
             :key="renderCnt"
             :data="data"
             :columns="columns"
@@ -229,7 +237,7 @@ watch([steps, () => steps.value.length], ([s, len]) => {
 
 const nfLong = computed(() => atoms.value.length >= 3);
 
-const canReduce = computed(() => steps.value[steps.value.length - 1].exp.length > 1);
+const canReduce = computed(() => ok.value && steps.value[steps.value.length - 1].exp.length > 1);
 
 const successColor = toRef(useThemeVars().value, 'successColor');
 </script>
