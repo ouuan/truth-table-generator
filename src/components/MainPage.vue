@@ -7,89 +7,109 @@
       title="真值表生成器"
       subtitle="「是个真值表生成器，但不完全是～」"
     />
-    <n-card title="关于">
-      <about-section />
-    </n-card>
-    <n-card title="输入">
-      <n-p>
-        <n-ul>
-          <n-li>
-            运算符的种类，表示方法，以及优先级顺序：
-            <n-ol>
-              <n-li>非: ¬, !, ！, ~</n-li>
-              <n-li>与: ∧, &amp;</n-li>
-              <n-li>与非: ↑, ⊼</n-li>
-              <n-li>异或: ⊕, ^, ⊻</n-li>
-              <n-li>或: ∨, |, ｜, v</n-li>
-              <n-li>或非: ↓, ⊽</n-li>
-              <n-li>蕴含（右结合）: →, &gt;</n-li>
-              <n-li>被蕴含: ←, &lt;</n-li>
-              <n-li>等价: ↔, ⟷, =</n-li>
-            </n-ol>
-          </n-li>
-          <n-li>T/F 表示 true/false</n-li>
-          <n-li>命题变项用除了 T/F 的单个大写字母表示</n-li>
-        </n-ul>
-      </n-p>
-      <n-form-item
-        label="输入逻辑表达式"
-        :validation-status="validationStatus"
-        :feedback="feedback"
+    <n-card>
+      <n-collapse
+        :default-expanded-names="[
+          'about',
+          'input',
+          'simplify',
+        ]"
       >
-        <n-input
-          v-model:value="input"
-          :maxlength="200"
-          placeholder="!(P & Q) = !P | !Q"
-        />
-      </n-form-item>
-    </n-card>
-    <n-card
-      v-if="ok && atoms.length"
-      title="主范式与最简范式"
-    >
-      <n-p v-if="nfLong">
-        如果太长了，式子会被省略，点击式子就可以全部显示。
-      </n-p>
-      <normal-forms
-        :atoms="atoms"
-        :truths="truths"
-      />
-    </n-card>
-    <n-card
-      v-if="ok"
-      title="王浩算法"
-    >
-      <wang-hao-proof :root="rawRoot as AstNode" />
-    </n-card>
-    <n-card
-      v-if="steps.length > 1"
-      title="等值演算"
-    >
-      <n-space justify="space-between">
-        <simplification-steps :steps="steps" />
-        <n-button
-          type="warning"
-          @click="popStep"
+        <n-collapse-item
+          title="关于"
+          name="about"
         >
-          撤销
-        </n-button>
-      </n-space>
-    </n-card>
-    <n-card
-      v-if="ok"
-      title="真值表"
-    >
-      <n-p v-if="canReduce">
-        可以点击表头中的按钮来进行等值演算。如果没有发现你想要的规则，很可能是要多用几次交换律。
-      </n-p>
-      <n-data-table
-        :key="renderCnt"
-        :data="data"
-        :columns="columns"
-        :single-line="false"
-        :single-column="true"
-        :pagination="{ pageSize: 20 }"
-      />
+          <about-section />
+        </n-collapse-item>
+        <n-collapse-item
+          title="输入"
+          name="input"
+        >
+          <n-p>
+            <n-ul>
+              <n-li>
+                运算符的种类，表示方法，以及优先级顺序：
+                <n-ol>
+                  <n-li>非: ¬, !, ！, ~</n-li>
+                  <n-li>与: ∧, &amp;</n-li>
+                  <n-li>与非: ↑, ⊼</n-li>
+                  <n-li>异或: ⊕, ^, ⊻</n-li>
+                  <n-li>或: ∨, |, ｜, v</n-li>
+                  <n-li>或非: ↓, ⊽</n-li>
+                  <n-li>蕴含（右结合）: →, &gt;</n-li>
+                  <n-li>被蕴含: ←, &lt;</n-li>
+                  <n-li>等价: ↔, ⟷, =</n-li>
+                </n-ol>
+              </n-li>
+              <n-li>T/F 表示 true/false</n-li>
+              <n-li>命题变项用除了 T/F 的单个大写字母表示</n-li>
+            </n-ul>
+          </n-p>
+          <n-form-item
+            label="输入逻辑表达式"
+            :validation-status="validationStatus"
+            :feedback="feedback"
+          >
+            <n-input
+              v-model:value="input"
+              :maxlength="200"
+              placeholder="!(P & Q) = !P | !Q"
+            />
+          </n-form-item>
+        </n-collapse-item>
+        <n-collapse-item
+          v-if="ok && atoms.length"
+          title="主范式与最简范式"
+          name="nf"
+        >
+          <n-p v-if="nfLong">
+            如果太长了，式子会被省略，点击式子就可以全部显示。
+          </n-p>
+          <normal-forms
+            :atoms="atoms"
+            :truths="truths"
+          />
+        </n-collapse-item>
+        <n-collapse-item
+          v-if="ok"
+          title="王浩算法"
+          name="wanghao"
+        >
+          <wang-hao-proof :root="rawRoot as AstNode" />
+        </n-collapse-item>
+        <n-collapse-item
+          v-if="steps.length > 1"
+          title="等值演算"
+          name="simplify"
+        >
+          <n-space justify="space-between">
+            <simplification-steps :steps="steps" />
+            <n-button
+              type="warning"
+              @click="popStep"
+            >
+              撤销
+            </n-button>
+          </n-space>
+        </n-collapse-item>
+        <n-collapse-item
+          v-if="ok"
+          title="真值表"
+          name="table"
+        >
+          <n-p v-if="canReduce">
+            可以点击表头中的按钮来进行等值演算。如果没有发现你想要的规则，很可能是要多用几次交换律。
+          </n-p>
+          <n-data-table
+            :key="renderCnt"
+            :data="data"
+            :columns="columns"
+            :single-line="false"
+            :single-column="true"
+            :pagination="{ pageSize: 20 }"
+          />
+        </n-collapse-item>
+      </n-collapse>
     </n-card>
   </n-space>
 </template>
@@ -105,6 +125,8 @@ import {
 import {
   NButton,
   NCard,
+  NCollapse,
+  NCollapseItem,
   NDataTable,
   NFormItem,
   NInput,
