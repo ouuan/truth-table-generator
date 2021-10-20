@@ -1,6 +1,6 @@
 <template>
   <n-space
-    id="main"
+    class="main-page"
     vertical
   >
     <n-page-header
@@ -236,14 +236,12 @@ const successColor = toRef(useThemeVars().value, 'successColor');
 </script>
 
 <style scoped>
-#main {
+.main-page {
   max-width: 80%;
   margin: auto;
 }
-</style>
 
-<style>
-.n-data-table .truth-table-result {
+.n-data-table >>> .truth-table-result {
   color: v-bind(successColor);
 }
 </style>
