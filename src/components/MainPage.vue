@@ -241,7 +241,7 @@ const successColor = toRef(useThemeVars().value, 'successColor');
   margin: auto;
 }
 
-.n-data-table >>> .truth-table-result {
+.n-data-table:deep(.truth-table-result) {
   color: v-bind(successColor);
 }
 </style>
