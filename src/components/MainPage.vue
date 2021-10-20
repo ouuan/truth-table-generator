@@ -117,6 +117,7 @@
 <script setup lang="ts">
 import {
   ref,
+  shallowRef,
   computed,
   watch,
   toRef,
@@ -154,13 +155,13 @@ const input = ref('');
 const steps = ref<Step[]>([]);
 const feedback = ref('');
 const validationStatus = ref<'success' | 'error' | 'warning' | undefined>(undefined);
-const columns = ref<Column[]>([]);
-const data = ref<any[]>([]);
+const columns = shallowRef<Column[]>([]);
+const data = shallowRef<any[]>([]);
 const renderCnt = ref(0);
-const atoms = ref<string[]>([]);
-const truths = ref<boolean[]>([]);
+const atoms = shallowRef<string[]>([]);
+const truths = shallowRef<boolean[]>([]);
 const ok = ref(false);
-const rawRoot = ref<AstNode | null>(null);
+const rawRoot = shallowRef<AstNode | null>(null);
 
 function addStep(step: Step) {
   steps.value.push(step);
