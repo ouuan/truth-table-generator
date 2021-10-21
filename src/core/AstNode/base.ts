@@ -14,7 +14,7 @@ abstract class AstNode {
   }
 
   static quote(u: AstNode, v: AstNode): string {
-    if (precedence[u.type] <= precedence[v.type]) {
+    if (precedence[u.type] < precedence[v.type] + 1) {
       return `(${v})`;
     }
     return v.toString();
