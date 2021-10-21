@@ -37,7 +37,7 @@ export default function buildAst(expression: string): {
       .replace(/⊻|⊕|!=|……|\bXOR\b/gi, '^')
       .replace(/⊽|\bNOR\b/gi, '↓')
       .replace(/∨|v|｜|\|\||\bOR\b/gi, '|')
-      .replace(/⟷|↔|==|\bEQ\b/gi, '=')
+      .replace(/⟷|↔|==|<->|<>|\bEQ\b/gi, '=')
       .replace(/→|》|->|\bIMPLIES\b/gi, '>')
       .replace(/←|《|<-|\bIMPLIEDBY\b/gi, '<')
       .replace(/¬|~|！|～|\bNOT\b/gi, '!')

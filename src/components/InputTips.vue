@@ -14,7 +14,7 @@
             <n-li>或非: ↓, ⊽, NOR</n-li>
             <n-li>蕴含（右结合）: →, &gt;, -&gt;, 》, IMPLIES</n-li>
             <n-li>被蕴含: ←, &lt;, &lt;-, 《, IMPLIEDBY</n-li>
-            <n-li>等价: ↔, ⟷, =, ==, EQ</n-li>
+            <n-li>等价: ↔, ⟷, =, ==, &lt;-&gt;, &lt;&gt;, EQ</n-li>
           </n-ol>
           <span v-else>
             非: !，与: &amp;，或: |，蕴含: &gt;，等价: =
