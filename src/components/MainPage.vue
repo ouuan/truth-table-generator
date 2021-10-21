@@ -106,7 +106,7 @@
             :columns="columns"
             :single-line="false"
             :single-column="true"
-            :pagination="{ pageSize: 20 }"
+            :pagination="{ pageSize: 16 }"
           />
         </n-collapse-item>
       </n-collapse>
