@@ -11,7 +11,8 @@
     "lint:nofix": "eslint . --ignore-path .gitignore --ext .ts,.vue,.js",
     "lint:types": "vue-tsc --noEmit",
     "dev": "vite",
-    "build": "yarn lint && yarn lint:types && vite build"
+    "build": "yarn lint && yarn lint:types && vite build",
+    "test": "jest"
   },
   "dependencies": {
     "naive-ui": "^2.19.9",
@@ -19,6 +20,7 @@
     "vue": "^3.2.20"
   },
   "devDependencies": {
+    "@types/jest": "^27.0.2",
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
     "@vitejs/plugin-vue": "^1.9.3",
@@ -27,6 +29,8 @@
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-vue": "^7.20.0",
+    "jest": "^27.3.1",
+    "ts-jest": "^27.0.7",
     "typescript": "^4.4.4",
     "vite": "^2.6.10",
     "vue-tsc": "^0.28.7"
