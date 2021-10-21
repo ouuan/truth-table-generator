@@ -37,6 +37,14 @@
               placeholder="!(P & Q) = !P | !Q"
             />
           </n-form-item>
+          <n-card v-if="ok && !isStandard">
+            <n-space justify="space-between">
+              规范的表达式: {{ rawRoot }}
+              <n-button @click="standardizeInput">
+                将输入规范化
+              </n-button>
+            </n-space>
+          </n-card>
         </n-collapse-item>
         <n-collapse-item
           v-if="ok && atoms.length"
@@ -212,6 +220,14 @@ const nfLong = computed(() => atoms.value.length >= 3);
 const canReduce = computed(() => steps.value[steps.value.length - 1].exp.length > 1);
 
 const successColor = toRef(useThemeVars().value, 'successColor');
+
+const isStandard = computed(() => input.value === rawRoot.value?.toString());
+
+function standardizeInput() {
+  if (rawRoot.value) {
+    input.value = rawRoot.value.toString();
+  }
+}
 </script>
 
 <style scoped>

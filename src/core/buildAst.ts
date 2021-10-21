@@ -31,18 +31,19 @@ export default function buildAst(expression: string): {
   atomNodes: Map<string, AtomNode[]>
 } | null {
   try {
-    const exp = expression.replace(/\s/g, '')
-      .replace(/∧/g, '&')
-      .replace(/⊼/g, '↑')
-      .replace(/⊻|⊕/g, '^')
-      .replace(/⊽/g, '↓')
-      .replace(/∨|v|｜/g, '|')
-      .replace(/⟷|↔/g, '=')
-      .replace(/→/g, '>')
-      .replace(/←/g, '<')
-      .replace(/¬|~|！/g, '!')
-      .replace(/（/g, '(')
-      .replace(/）/g, ')');
+    const exp = expression
+      .replace(/∧|&&|\bAND\b/gi, '&')
+      .replace(/⊼|\bNAND\b/gi, '↑')
+      .replace(/⊻|⊕|!=|……|\bXOR\b/gi, '^')
+      .replace(/⊽|\bNOR\b/gi, '↓')
+      .replace(/∨|v|｜|\|\||\bOR\b/gi, '|')
+      .replace(/⟷|↔|==|\bEQ\b/gi, '=')
+      .replace(/→|》|->|\bIMPLIES\b/gi, '>')
+      .replace(/←|《|<-|\bIMPLIEDBY\b/gi, '<')
+      .replace(/¬|~|！|～|\bNOT\b/gi, '!')
+      .replace(/（|\[|【|\{|｛/g, '(')
+      .replace(/）|\]|】|\}|｝/g, ')')
+      .replace(/\s/g, '');
 
     if (/[^A-Z()!&|><=↑^↓]/.test(exp)) return null;
 

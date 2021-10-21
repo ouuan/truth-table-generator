@@ -5,15 +5,16 @@
         <n-li>
           运算符的种类，表示方法，以及优先级顺序：
           <n-ol v-if="showAllOperators">
-            <n-li>非: ¬, !, ！, ~</n-li>
-            <n-li>与: ∧, &amp;</n-li>
-            <n-li>与非: ↑, ⊼</n-li>
-            <n-li>异或: ⊕, ^, ⊻</n-li>
-            <n-li>或: ∨, |, ｜, v</n-li>
-            <n-li>或非: ↓, ⊽</n-li>
-            <n-li>蕴含（右结合）: →, &gt;</n-li>
-            <n-li>被蕴含: ←, &lt;</n-li>
-            <n-li>等价: ↔, ⟷, =</n-li>
+            <n-li>括号（这些括号作用都相同）: (), [], {}, （）, 【】, ｛｝</n-li>
+            <n-li>非: ¬, !, ！, ~, ～, NOT</n-li>
+            <n-li>与: ∧, &amp;, &amp;&amp;, AND</n-li>
+            <n-li>与非: ↑, ⊼, NAND</n-li>
+            <n-li>异或: ⊕, ^, ⊻, !=, ……, XOR</n-li>
+            <n-li>或: ∨, |, ｜, ||, v, OR</n-li>
+            <n-li>或非: ↓, ⊽, NOR</n-li>
+            <n-li>蕴含（右结合）: →, &gt;, -&gt;, 》, IMPLIES</n-li>
+            <n-li>被蕴含: ←, &lt;, &lt;-, 《, IMPLIEDBY</n-li>
+            <n-li>等价: ↔, ⟷, =, ==, EQ</n-li>
           </n-ol>
           <span v-else>
             非: !，与: &amp;，或: |，蕴含: &gt;，等价: =
