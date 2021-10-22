@@ -10,7 +10,7 @@
             <n-li>与: ∧, &amp;, &amp;&amp;, AND</n-li>
             <n-li>与非: ↑, ⊼, NAND</n-li>
             <n-li>异或: ⊕, ^, ⊻, !=, ……, XOR</n-li>
-            <n-li>或: ∨, |, ｜, ||, v, OR</n-li>
+            <n-li>或: ∨, |, ｜, ||, OR</n-li>
             <n-li>或非: ↓, ⊽, NOR</n-li>
             <n-li>蕴含（右结合）: →, &gt;, -&gt;, 》, IMPLIES</n-li>
             <n-li>被蕴含: ←, &lt;, &lt;-, 《, IMPLIEDBY</n-li>
