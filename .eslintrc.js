@@ -61,6 +61,12 @@ module.exports = {
     'no-unused-vars': 0,
     '@typescript-eslint/no-unused-vars': 2,
 
+    indent: 0,
+    '@typescript-eslint/indent': [
+      'error',
+      2,
+    ],
+
     'vue/block-lang': ['error',
       {
         script: {
