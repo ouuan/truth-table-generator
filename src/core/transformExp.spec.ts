@@ -75,4 +75,9 @@ describe('transformExp', () => {
     const result = transformExp(' \n\t\rAND\r\t\n\v   ');
     expect(result).toBe('&');
   });
+
+  it('should keep capital letters', () => {
+    const result = transformExp('Q W E R T Y U I O P A S D F G H J K L Z X C V B N M');
+    expect(result).toBe('QWERTYUIOPASDFGHJKLZXCVBNM');
+  });
 });
