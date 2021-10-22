@@ -15,7 +15,8 @@
     "baseUrl": ".",
     "types": [
       "node",
-      "vite/client"
+      "vite/client",
+      "jest"
     ],
     "paths": {
       "~/*": [

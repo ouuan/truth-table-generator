@@ -4,6 +4,7 @@ module.exports = {
     node: true,
     browser: true,
     es2015: true,
+    jest: true,
   },
   extends: [
     '@vue/typescript/recommended',
