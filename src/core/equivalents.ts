@@ -185,7 +185,16 @@ export default function equivalents(node: AstNode): Equivalent[] {
           new ImplyNode(node.ch(0), node.ch(1)),
           new ImplyNode(node.ch(1), node.ch(0)),
         ),
+      }, {
+        name: '等价否定等值式',
+        result: new EqNode(new NotNode(node.ch(0)), new NotNode(node.ch(1))),
       });
+      if (node.ch(0).type === 'not' && node.ch(1).type === 'not') {
+        result.push({
+          name: '等价否定等值式',
+          result: new EqNode(node.ch(0).ch(0), node.ch(1).ch(0)),
+        });
+      }
       break;
     case 'false':
       result.push({
