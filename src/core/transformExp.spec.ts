@@ -67,8 +67,9 @@ describe('transformExp', () => {
   });
 
   it('should have \\b', () => {
-    const result = transformExp('NotAndNandXorOrNorImpliesImpliedbyEq');
-    expect(result).toBe(result);
+    const origin = 'NotAndNandXorOrNorImpliesImpliedbyEq';
+    const result = transformExp(origin);
+    expect(result).toBe(origin);
   });
 
   it('should remove spaces', () => {
@@ -79,5 +80,26 @@ describe('transformExp', () => {
   it('should keep capital letters', () => {
     const result = transformExp('Q W E R T Y U I O P A S D F G H J K L Z X C V B N M');
     expect(result).toBe('QWERTYUIOPASDFGHJKLZXCVBNM');
+  });
+
+  it('should transform LaTeX', () => {
+    const result = transformExp('\\uparrow\\downarrow\\land\\lor\\xor\\nand\\neg\\lor\\leftrightarrow\\lnot\\vee\\wedge\\gets\\to\\land\\nand\\nor\\rightarrow\\leftarrow\\land\\lor\\xor\\nand\\neg\\lor\\leftrightarrow\\gets\\to\\land\\nand\\nor\\rightarrow\\leftarrow');
+    expect(result).toBe('↑↓&|^↑!|=!|&<>&↑↓><&|^↑!|=<>&↑↓><');
+  });
+
+  it('should have \\b for LaTeX', () => {
+    const origin = '\\uparrowx\\downarrowx\\landx\\lorx\\xorx\\nandx\\negx\\lorx\\leftrightarrowx\\lnotx\\veex\\wedgex\\getsx\\tox\\landx\\nandd\\norr\\rightarroww\\leftarroww';
+    const result = transformExp(origin);
+    expect(result).toBe(origin);
+  });
+
+  it('should require "\\" for LaTeX', () => {
+    const result = transformExp('uparrow downarrow land lor xor nand neg lor leftrightarrow lnot vee wedge gets to land nand nor rightarrow leftarrow');
+    expect(result).toBe('uparrowdownarrowlandlor^↑neglorleftrightarrowlnotveewedgegetstoland↑↓rightarrowleftarrow');
+  });
+
+  it('should require lowercase for LaTeX', () => {
+    const result = transformExp('\\Uparrow\\Downarrow\\Land\\Lor\\Xor\\Nand\\Neg\\Lor\\Leftrightarrow\\Lnot\\Vee\\Wedge\\Gets\\To\\Land\\Nand\\Nor\\Rightarrow\\Leftarrow');
+    expect(result).toBe('\\Uparrow\\Downarrow\\Land\\Lor\\^\\↑\\Neg\\Lor\\Leftrightarrow\\Lnot\\Vee\\Wedge\\Gets\\To\\Land\\↑\\↓\\Rightarrow\\Leftarrow');
   });
 });
