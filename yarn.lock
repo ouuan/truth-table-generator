@@ -3304,10 +3304,10 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
-naive-ui@^2.19.9:
-  version "2.19.9"
-  resolved "https://registry.yarnpkg.com/naive-ui/-/naive-ui-2.19.9.tgz#faac9e9b5f39301e0e52ba2e52945ed56dff4890"
-  integrity sha512-BKD0z+8z75XAnSzr9wQ3CQKHL2/IgaFy7XZFYIA9deS7Iql1LkTGajDbAHmUcbfm//sCjbTa0vhvcVy/B7zpqw==
+naive-ui@^2.19.11:
+  version "2.19.11"
+  resolved "https://registry.yarnpkg.com/naive-ui/-/naive-ui-2.19.11.tgz#a65f047b2e53f72a4955b91856f76eb01e35e76d"
+  integrity sha512-cbrsaTfqevwvE/TxbFKhDAYIZZfGdGeLWKPvoRuxQyKqjnldtP5t6cXfMSLmRPExqs/lQcH+eilfrNPpVj4xpA==
   dependencies:
     "@css-render/plugin-bem" "^0.15.6"
     "@css-render/vue3-ssr" "^0.15.6"
@@ -4259,17 +4259,10 @@ void-elements@^3.1.0:
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-3.1.0.tgz#614f7fbf8d801f0bb5f0661f5b2f5785750e4f09"
   integrity sha1-YU9/v42AHwu18GYfWy9XhXUOTwk=
 
-vooks@^0.2.10:
+vooks@^0.2.10, vooks@^0.2.4:
   version "0.2.10"
   resolved "https://registry.yarnpkg.com/vooks/-/vooks-0.2.10.tgz#2656f4c025758ed97edc4a9584c9cc15ecffb70b"
   integrity sha512-clZkEndDEUyUFP7u1dL0iijcW0p04Hhj50IVcakRrLjQkuZIr7sx6EX9oMyWgrYVjmfdX6vysnCg3OxsYl67jA==
-  dependencies:
-    evtd "^0.2.2"
-
-vooks@^0.2.4:
-  version "0.2.8"
-  resolved "https://registry.yarnpkg.com/vooks/-/vooks-0.2.8.tgz#fad6a78c72e39443e56285337b0843baaeed0f3e"
-  integrity sha512-d+MHX5mTHeNZn0XTILMUKjpxS1+dUKCI/kw9+LnvfHzCawL8bZ1itViAbWfwJI246uSc47rL3ECPgPMyS8wQrQ==
   dependencies:
     evtd "^0.2.2"
 
