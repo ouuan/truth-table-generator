@@ -15,7 +15,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "naive-ui": "^2.19.9",
+    "naive-ui": "^2.19.11",
     "ts-exhaustive-check": "^1.0.0",
     "vue": "^3.2.20"
   },
