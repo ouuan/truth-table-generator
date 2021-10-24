@@ -7,7 +7,7 @@
       :render-label="renderLabel"
       block-node
       virtual-scroll
-      style="max-height: 500px;"
+      class="wanghao"
     />
   </template>
   <n-p v-else>
@@ -49,12 +49,25 @@ function renderLabel({ option }: { option: TreeOption }) {
   if (typeof key === 'string' && key[0] === '1') type = 'success';
   return h(NText, {
     type,
-    style: {
-      minWidth: '10em',
-      display: 'inline-block',
-    },
+    class: 'wanghao-step',
   }, {
     default: () => option.label,
   });
 }
 </script>
+
+<style scoped>
+.wanghao {
+  max-height: 500px;
+}
+
+.wanghao:deep(.wanghao-step) {
+  min-width: 10em;
+  display: inline-block;
+}
+
+.wanghao:deep(.wanghao-rule) {
+  width: 5em;
+  text-align: right;
+}
+</style>
