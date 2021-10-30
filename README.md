@@ -8,5 +8,6 @@
 
 ```bash
 yarn
-yarn dev
+yarn serve
+yarn build
 ```
