@@ -15,7 +15,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "naive-ui": "^2.19.11",
+    "naive-ui": "^2.20.0",
     "ts-exhaustive-check": "^1.0.0",
     "vue": "^3.2.20"
   },
@@ -23,16 +23,16 @@
     "@types/jest": "^27.0.2",
     "@typescript-eslint/eslint-plugin": "^5.2.0",
     "@typescript-eslint/parser": "^5.2.0",
-    "@vitejs/plugin-vue": "^1.9.3",
-    "@vue/eslint-config-typescript": "^8.0.0",
+    "@vitejs/plugin-vue": "^1.9.4",
+    "@vue/eslint-config-typescript": "^9.0.0",
     "eslint": "^8.1.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-vue": "^7.20.0",
+    "eslint-plugin-vue": "^8.0.3",
     "jest": "^27.3.1",
     "ts-jest": "^27.0.7",
     "typescript": "^4.4.4",
-    "vite": "^2.6.12",
-    "vue-tsc": "^0.28.9"
+    "vite": "^2.6.13",
+    "vue-tsc": "^0.28.10"
   }
 }
