@@ -51,6 +51,9 @@ module.exports = {
 
     'no-restricted-syntax': ['error', 'ForInStatement', 'LabeledStatement', 'WithStatement'],
 
+    'no-use-before-define': 0,
+    '@typescript-eslint/no-use-before-define': 2,
+
     // for generic type parameters
     'no-spaced-func': 0,
     'func-call-spacing': 0,
