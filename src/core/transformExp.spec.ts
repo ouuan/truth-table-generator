@@ -102,4 +102,9 @@ describe('transformExp', () => {
     const result = transformExp('\\Uparrow\\Downarrow\\Land\\Lor\\Xor\\Nand\\Neg\\Lor\\Leftrightarrow\\Lnot\\Vee\\Wedge\\Gets\\To\\Land\\Nand\\Nor\\Rightarrow\\Leftarrow');
     expect(result).toBe('\\Uparrow\\Downarrow\\Land\\Lor\\^\\↑\\Neg\\Lor\\Leftrightarrow\\Lnot\\Vee\\Wedge\\Gets\\To\\Land\\↑\\↓\\Rightarrow\\Leftarrow');
   });
+
+  it('should accept true/false as T/F', () => {
+    const result = transformExp('true false True fALsE truefalse');
+    expect(result).toBe('TFTFtruefalse');
+  });
 });

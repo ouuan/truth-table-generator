@@ -20,7 +20,7 @@
             非: !，与: &amp;，或: |，蕴含: &gt;，等价: =
           </span>
         </n-li>
-        <n-li>T/F 表示 true/false</n-li>
+        <n-li>T/F 或 true/false 表示真/假</n-li>
         <n-li>命题变项用除了 T/F 的单个大写字母表示</n-li>
       </n-ul>
       <n-form-item

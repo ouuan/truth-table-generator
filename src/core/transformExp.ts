@@ -20,5 +20,7 @@ export default function transformExp(exp: string): string {
     .replace(/¬|~|！|～|\bNOT\b/gi, '!')
     .replace(/（|\[|【|\{|｛/g, '(')
     .replace(/）|\]|】|\}|｝/g, ')')
+    .replace(/\btrue\b/gi, 'T')
+    .replace(/\bfalse\b/gi, 'F')
     .replace(/\s/g, '');
 }
